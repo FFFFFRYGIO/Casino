@@ -16,7 +16,8 @@ public class CasinoApplication {
 
 	@GetMapping("/home")
 	public ModelAndView home() {
-		ModelAndView home_page = new ModelAndView("home");
+		// ModelAndView home_page = new ModelAndView("../../../../casino-react-app/src/components/home");
+		ModelAndView home_page = new ModelAndView("../static/home");
 		home_page.addObject("user_name", "Radek");
 		return home_page;
 	}
