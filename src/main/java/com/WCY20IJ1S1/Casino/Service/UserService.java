@@ -23,7 +23,7 @@ public class UserService {
     }
 
     public User findUser(String nickName){
-        return userRepository.findUserByNickName(nickName).orElseThrow(()->new RuntimeException());
+        return userRepository.findUserByNickName(nickName).orElseThrow(RuntimeException::new);
     }
 
     public void deleteUser(String nickName){

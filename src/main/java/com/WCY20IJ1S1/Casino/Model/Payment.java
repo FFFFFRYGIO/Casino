@@ -1,14 +1,24 @@
 package com.WCY20IJ1S1.Casino.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+
 import java.time.LocalDate;
 
+//payment entity for DB
+@AllArgsConstructor
+@NoArgsConstructor
 public class Payment {
+    @Id
+    private ObjectId id;
     private String name;
     private LocalDate paymentDate;
-    private Double income;
-    private Double value;
+    private double income;
+    private double value;
 
-    public Payment(String name, LocalDate paymentDate, Double income, Double value) {
+    public Payment(String name, LocalDate paymentDate, double income, double value) {
         this.name = name;
         this.paymentDate = paymentDate;
         this.income = income;
@@ -23,11 +33,11 @@ public class Payment {
         return paymentDate;
     }
 
-    public Double getIncome() {
+    public double getIncome() {
         return income;
     }
 
-    public Double getValue() {
+    public double getValue() {
         return value;
     }
 }
