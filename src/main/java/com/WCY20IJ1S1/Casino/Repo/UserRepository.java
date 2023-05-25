@@ -9,8 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
-    // Contains all necessary functions for DB connection
-
+    // Contains all necessary functions for DB operations
     Optional<User> findUserByNickName(String nickName);
     void deleteUserByNickName(String nickName);
 
