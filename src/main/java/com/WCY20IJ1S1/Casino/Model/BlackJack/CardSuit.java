@@ -1,4 +1,4 @@
-package com.WCY20IJ1S1.Casino.Model;
+package com.WCY20IJ1S1.Casino.Model.BlackJack;
 
 public enum CardSuit {
     HEARTS,

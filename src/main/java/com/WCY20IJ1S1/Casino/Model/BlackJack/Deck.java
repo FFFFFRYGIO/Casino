@@ -1,8 +1,11 @@
-package com.WCY20IJ1S1.Casino.Model;
+package com.WCY20IJ1S1.Casino.Model.BlackJack;
+
+import com.WCY20IJ1S1.Casino.Model.BlackJack.Card;
+import com.WCY20IJ1S1.Casino.Model.BlackJack.CardRank;
+import com.WCY20IJ1S1.Casino.Model.BlackJack.CardSuit;
 
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Deck {
 

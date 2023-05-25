@@ -1,6 +1,6 @@
 package com.WCY20IJ1S1.Casino.Repo;
 
-import com.WCY20IJ1S1.Casino.Model.User;
+import com.WCY20IJ1S1.Casino.Model.DataBase.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
 package com.WCY20IJ1S1.Casino.Service;
 
-import com.WCY20IJ1S1.Casino.Model.BlackJackData;
-import com.WCY20IJ1S1.Casino.Model.Card;
-import com.WCY20IJ1S1.Casino.Model.Deck;
+import com.WCY20IJ1S1.Casino.Model.BlackJack.BlackJackData;
+import com.WCY20IJ1S1.Casino.Model.BlackJack.Card;
+import com.WCY20IJ1S1.Casino.Model.BlackJack.Deck;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
