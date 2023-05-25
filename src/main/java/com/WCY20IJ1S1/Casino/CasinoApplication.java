@@ -26,10 +26,10 @@ public class CasinoApplication {
 	@Autowired
 	APIService apiService;
 
-	@GetMapping("/home")
+	@GetMapping("/HomePage")
 	public ModelAndView home() {
 		// ModelAndView home_page = new ModelAndView("../../../../casino-react-app/src/components/home");
-		ModelAndView home_page = new ModelAndView("../static/home");
+		ModelAndView home_page = new ModelAndView("../static/index");
 		home_page.addObject("user_name", "Radek");
 		return home_page;
 	}

@@ -1,12 +1,15 @@
 import React from 'react';
 import Base from './Base';
 import './HomePage.css';
+import {useNavigate} from 'react-router-dom';
 
 const HomePage = () => {
+    const navigate = useNavigate();
     const handleFormSubmit = (event) => {
         event.preventDefault();
         const name = event.target.name.value;
         console.log(name);
+        navigate('/StartPage');
     };
 
     return (
