@@ -1,6 +1,7 @@
 package com.WCY20IJ1S1.Casino;
 
 import com.WCY20IJ1S1.Casino.Service.RouletteService;
+import com.WCY20IJ1S1.Casino.Service.SlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,5 +38,11 @@ public class CasinoApplication {
 	@GetMapping("/blackjack")
 	public void blackjack() {
 
+	}
+
+	@GetMapping("/slot")
+	public void slot() {
+		SlotService slotService = new SlotService();
+		slotService.GameStart(15);
 	}
 }
