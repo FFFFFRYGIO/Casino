@@ -1,0 +1,52 @@
+.options {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border: 5px solid black;
+    margin-top: 30px;
+}
+
+.option-button {
+    font-size: 30px;
+    color: #ffcc00;
+    font-family: "Agency FB", serif;
+    text-align: center;
+    padding: 5px 15px 5px 10px;
+    border: 5px solid black;
+    margin: 15px;
+}
+
+.games {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    height: 50vh;
+}
+
+.game-button {
+    font-size: 30px;
+    color: #ffcc00;
+    font-family: "Agency FB", serif;
+    text-align: center;
+    padding: 5px 15px 5px 10px;
+    margin: 15px;
+}
+
+.game-button img {
+    width: 300px;
+    height: 200px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+}
+
+.game-caption {
+    font-size: 30px;
+    text-align: center;
+    color: #ffcc00;
+    font-family: "Agency FB", serif;
+    margin: 0px 10px 10px;
+}

@@ -1,0 +1,36 @@
+.content h1 {
+    font-size: 100px;
+    color: #ffcc00;
+    font-family: "Brush Script MT", serif;
+    text-align: center;
+    padding: 10px;
+    border: 5px solid black;
+    margin-bottom: 50px;
+}
+
+.main_image img {
+    width: 750px;
+    height: 350px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+}
+
+input[type="text"]:required {
+    padding: 10px;
+    font-size: 18px;
+}
+
+button img {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+    width: 50px;
+    height: 40px;
+}
