@@ -33,4 +33,9 @@ public class CasinoApplication {
 		rouletteService.UserBets("C-1.14.2.5.6.00", null);
 		rouletteService.WinnerOrLoser(15, 0);
 	}
+
+	@GetMapping("/blackjack")
+	public void blackjack() {
+
+	}
 }
