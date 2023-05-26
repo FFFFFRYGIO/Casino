@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.parser.Entity;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -16,6 +17,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers(){
+        return new ResponseEntity<>(userService.allUsers(), HttpStatus.OK);
+    }
     @PostMapping("/add")
     public ResponseEntity<User> addUser(@RequestBody Map<String, String> payload){
         return new ResponseEntity<>(userService.addUser(payload.get("nickName")), HttpStatus.OK);
