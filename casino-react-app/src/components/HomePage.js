@@ -15,18 +15,15 @@ const HomePage = () => {
     return (
         <Base>
             <div className="content">
-                <h1>Casino Royale</h1>
-                <div className="main_image">
-                    <img src="roulette-image.jpg" alt="Roulette" />
+                <div class="Box">
+                    <img src="logo.png" alt="logo" class="logo"/>
+                    <form onSubmit={handleFormSubmit}>
+                        <input type="text" name="name" placeholder="Input Your Nick" required />
+                        <button type="submit" class="poker-chip-button">
+                            <img src="arrow.png" alt="arrow" />
+                        </button>
+                    </form>
                 </div>
-                <br />
-                <form onSubmit={handleFormSubmit}>
-                    <input type="text" name="name" placeholder="Input name" required />
-                    <br />
-                    <button type="submit">
-                        <img src="arrow-image.jpg" alt="arrow" />
-                    </button>
-                </form>
             </div>
         </Base>
     );
