@@ -1,6 +1,6 @@
 package com.WCY20IJ1S1.Casino.Service;
 
-import com.WCY20IJ1S1.Casino.Model.RouletteNumbers;
+import com.WCY20IJ1S1.Casino.Model.Roulette.RouletteNumbers;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

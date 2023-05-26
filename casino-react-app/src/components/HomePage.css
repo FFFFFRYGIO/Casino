@@ -1,32 +1,50 @@
-.content h1 {
-    font-size: 100px;
-    color: #ffcc00;
-    font-family: "Brush Script MT", serif;
-    text-align: center;
-    padding: 10px;
-    border: 5px solid black;
-    margin-bottom: 50px;
-}
-
-.main_image img {
-    width: 750px;
-    height: 350px;
-}
-
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50%;
 }
 
 input[type="text"]:required {
     padding: 10px;
     font-size: 18px;
+    border-radius: 25px;
+    text-align: center;
 }
 
-button img {
+.logo{
+    padding-bottom: 30px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.poker-chip-button {
+   display: block;
+   width: 4em;
+   height: 4em;
+   font-size: 2em;
+   font-weight: 700;
+   letter-spacing: .1em;
+   text-transform: uppercase;
+   text-align: center;
+   text-decoration: none;
+   color: #fff;
+   background: black;
+   border: 15px dashed #fff;
+   border-radius: 6em;
+   padding-top: 6em/2 - 1em;
+   transition: all linear 0.15s;
+   box-shadow: 0 0 20px rgba(0,0,0,0.5);
+   margin: 2em;
+
+   &:hover {
+       box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+     }
+}
+
+.poker-chip-button img {
     border: none;
     background-color: transparent;
     padding: 0;

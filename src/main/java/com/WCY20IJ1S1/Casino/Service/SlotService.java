@@ -1,12 +1,11 @@
 package com.WCY20IJ1S1.Casino.Service;
 
-import com.WCY20IJ1S1.Casino.Model.SlotsSymbols;
+import com.WCY20IJ1S1.Casino.Model.Slots.SlotsSymbols;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class SlotService {

@@ -1,13 +1,11 @@
 package com.WCY20IJ1S1.Casino.Service;
 
-import com.WCY20IJ1S1.Casino.Model.User;
+import com.WCY20IJ1S1.Casino.Model.DataBase.User;
 import com.WCY20IJ1S1.Casino.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

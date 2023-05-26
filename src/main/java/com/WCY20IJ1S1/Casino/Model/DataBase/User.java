@@ -1,5 +1,6 @@
-package com.WCY20IJ1S1.Casino.Model;
+package com.WCY20IJ1S1.Casino.Model.DataBase;
 
+import com.WCY20IJ1S1.Casino.Model.DataBase.Payment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
