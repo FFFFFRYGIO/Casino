@@ -2,14 +2,23 @@ import React from 'react';
 import Base from './Base';
 import './HomePage.css';
 import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 const HomePage = () => {
     const navigate = useNavigate();
+
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        const name = event.target.name.value;
-        console.log(name);
-        navigate('/StartPage');
+        const nickName = event.target.nickName.value;
+        const ResponseNickName = "";
+        axios.post('/DB/user/add', { nickName }).then(response => {
+              console.log(response.data);
+              ResponseNickName = response.data.nickName;})
+              .catch(error => {
+                console.error(error);
+              });
+
+        navigate('/StartPage', {ResponseNickName});
     };
 
     return (
@@ -18,7 +27,7 @@ const HomePage = () => {
                 <div class="Box">
                     <img src="logo.png" alt="logo" class="logo"/>
                     <form onSubmit={handleFormSubmit}>
-                        <input type="text" name="name" placeholder="Input Your Nick" required />
+                        <input type="text" name="nickName" placeholder="Input Your Nick" required />
                         <button type="submit" class="poker-chip-button">
                             <img src="arrow.png" alt="arrow" />
                         </button>

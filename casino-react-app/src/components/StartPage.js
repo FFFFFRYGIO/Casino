@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Base from './Base';
 import "./StartPage.css"
+import { useParams, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const StartPage = () => {
+    const { ResponseNickName } = useLocation();
+    const [UserNick, setUserNick] = useState("");
+    const [UserBalance, setUserBalance] = useState(0.0);
+
+    useEffect(() => {
+            axios.get("/DB/user/get/${ResponseNickName}")
+                .then(response => {
+                    const { nickName, balance } = response.data;
+                    setUserNick(nickName);
+                    setUserBalance(balance);
+                    console.log(UserNick);
+                    console.log(UserBalance);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }, [ResponseNickName]);
+
     return (
         <Base>
             <div className="options">
-                <button className="option-button"><img className="icon" src="user_icon.png" alt="user_icon" /> RADEK (Change)</button>
-                <button className="option-button"><img className="icon" src="user_icon.png" alt="user_icon" /> RADEK (View)</button>
-                <button className="option-button"><img className="icon" src="money_icon.png" alt="money_icon" /> 6969.69$ (Add)</button>
+                <button className="option-button"><img className="icon" src="user_icon.png" alt="user_icon" /> {UserNick} (Change)</button>
+                <button className="option-button"><img className="icon" src="user_icon.png" alt="user_icon" /> {UserNick} (View)</button>
+                <button className="option-button"><img className="icon" src="money_icon.png" alt="money_icon" /> {UserBalance}$ (Add)</button>
             </div>
             <div className="games">
                 <div className="game">
