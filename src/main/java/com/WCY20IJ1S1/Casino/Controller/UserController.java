@@ -28,4 +28,10 @@ public class UserController {
                 .header("Location", "")
                 .body("Delete");
     }
+
+    @GetMapping("/get/{nickName}")
+    public ResponseEntity<User> findUserByNickName(@PathVariable("nickName") String nickName){
+        User user = userService.findUser(nickName);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 }
