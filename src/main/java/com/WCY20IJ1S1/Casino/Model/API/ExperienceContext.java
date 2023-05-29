@@ -3,12 +3,12 @@ package com.WCY20IJ1S1.Casino.Model.API;
 public class ExperienceContext {
     private String payment_method_preference = "IMMEDIATE_PAYMENT_REQUIRED";
     private String payment_method_selected = "PAYPAL";
-    private String brand_name = "EXAMPLE INC";
+    private String brand_name = "Casino Royal";
     private String locale = "en-US";
     private String landing_page = "LOGIN";
     private String shipping_preference = "SET_PROVIDED_ADDRESS";
     private String user_action = "PAY_NOW";
-    private String return_url = "https://example.com/returnUrl";
+    private String return_url = "http://localhost:8080/HomePage";
     private String cancel_url = "https://example.com/cancelUrl";
 
     public String getPayment_method_preference() {

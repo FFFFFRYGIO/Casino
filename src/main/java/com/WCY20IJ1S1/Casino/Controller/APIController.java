@@ -21,13 +21,14 @@ public class APIController {
     private APIService apiService;
     @GetMapping("/{amount}")
     //public void makePayment(@RequestBody Map<String, String> payload) throws URISyntaxException, IOException, InterruptedException {
-    public ResponseEntity<String> makePayment(@PathVariable ("amount") String amount) throws URISyntaxException, IOException, InterruptedException {
+    public RedirectView makePayment(@PathVariable ("amount") String amount) throws URISyntaxException, IOException, InterruptedException {
         //String paymentUrl = apiService.CreateOrder(Double.parseDouble(payload.get("amount")));
         String paymentUrl = apiService.CreateOrder(Double.parseDouble(amount));
         System.out.println(paymentUrl);
-        return ResponseEntity.ok()
-                .header("Location", "/HomePage")
-                .body("pay");
+        return new RedirectView(paymentUrl);
+//        return ResponseEntity.ok()
+//                .header("Location", "/HomePage")
+//                .body("pay");
         //String confirm = apiService.ConfirmOrder();
     }
     public RedirectView openPayment(String url) {
