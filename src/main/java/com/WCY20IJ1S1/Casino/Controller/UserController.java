@@ -36,7 +36,10 @@ public class UserController {
 
     @GetMapping("/get/{nickName}")
     public ResponseEntity<User> findUserByNickName(@PathVariable("nickName") String nickName){
+        System.out.println("cos");
+        System.out.println(nickName);
         User user = userService.findUser(nickName);
+        System.out.println(user.getNickName());
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }
