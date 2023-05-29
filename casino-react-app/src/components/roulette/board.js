@@ -6,31 +6,31 @@ const RouletteBoard = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
 
     const handleNumberChoose = (number) => {
-        setSelectedNumber(number);
+        if (number === 100) setSelectedNumber("00");
+        else setSelectedNumber(number);
     };
 
     const handleCategoryChoose = (category) => {
         setSelectedCategory(category);
     };
 
+    const black_numbers = [
+        2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35
+    ];
+
     const generate_number_button = (number) => {
         let coloring = "number_button_green";
-        if (number <= 18) {
-            if (number % 2) {
-                coloring = "number_button_red";
-            } else {
-                coloring = "number_button_black";
-            }
+        if (black_numbers.includes(number)) {
+            coloring = "number_button_black";
         } else {
-            if (number % 2) {
-                coloring = "number_button_black";
-            } else {
-                coloring = "number_button_red";
-            }
+            coloring = "number_button_red";
         }
         return (
-            <button className={`number_button ${coloring}`} onClick={() => handleNumberChoose(number)}>
-                {number >= 10 ? number : " " + number + " "}
+            <button
+                className={`number_button ${coloring}`}
+                onClick={() => handleNumberChoose(number)}
+            >
+                {number}
             </button>
         );
     };
@@ -45,30 +45,133 @@ const RouletteBoard = () => {
         return buttons;
     };
 
-    const generate_all_categories_buttons = () => {
-        return (
-            <div>
-                <button className="board_categories_buttons" onClick={() => handleCategoryChoose("1st12")}>1st12</button>
-                <button className="board_categories_buttons" onClick={() => handleCategoryChoose("2nd12")}>2nd12</button>
-                <button className="board_categories_buttons" onClick={() => handleCategoryChoose("3rd12")}>3rd12</button>
-                <button className="board_categories_buttons" onClick={() => handleCategoryChoose("Black")}>Black</button>
-                <button className="board_categories_buttons" onClick={() => handleCategoryChoose("Red")}>Red</button>
-                <button className="board_categories_buttons" onClick={() => handleCategoryChoose("1to18")}>1to18</button>
-                <button className="board_categories_buttons" onClick={() => handleCategoryChoose("19to36")}>19to36</button>
-                <button className="board_categories_buttons" onClick={() => handleCategoryChoose("even")}>even</button>
-                <button className="board_categories_buttons" onClick={() => handleCategoryChoose("odd")}>odd</button>
-            </div>
-        );
+    const category_buttons_texts_col1 = ["1st12", "2nd12", "3rd12"];
+    const category_buttons_texts_col2 = [
+        "1to18",
+        "even",
+        "Red",
+        "Black",
+        "odd",
+        "19to36"
+    ];
+
+    const generate_categories_buttons_col1 = () => {
+        const buttons = [];
+        for (let i = 0; i < category_buttons_texts_col1.length; i++) {
+            const text = category_buttons_texts_col1[i];
+            buttons.push(
+                <button
+                    className="category_button category_button_col1"
+                    key={i}
+                    onClick={() => handleCategoryChoose(text)}
+                >
+                    <span className="category_button_text">{text}</span>
+                </button>
+            );
+        }
+        return buttons;
+    };
+
+    const generate_categories_buttons_col2 = () => {
+        const buttons = [];
+        for (let i = 0; i < category_buttons_texts_col2.length; i++) {
+            const text = category_buttons_texts_col2[i];
+            if (text === "Red") {
+                buttons.push(
+                    <button
+                        className="category_button category_button_col2 category_button_col2_red"
+                        key={i}
+                        onClick={() => handleCategoryChoose(text)}
+                    >
+                        <span className="category_button_text">{text}</span>
+                    </button>
+                );
+            } else if (text === "Black") {
+                buttons.push(
+                    <button
+                        className="category_button category_button_col2 category_button_col2_black"
+                        key={i}
+                        onClick={() => handleCategoryChoose(text)}
+                    >
+                        <span className="category_button_text ">{text}</span>
+                    </button>
+                );
+            } else {
+                buttons.push(
+                    <button
+                        className="category_button category_button_col2"
+                        key={i}
+                        onClick={() => handleCategoryChoose(text)}
+                    >
+                        <span className="category_button_text">{text}</span>
+                    </button>
+                );
+            }
+        }
+        return buttons;
+    };
+
+    const handleSubmit = () => {
+        const data = {
+            selectedNumber: selectedNumber,
+            selectedCategory: selectedCategory
+        };
+
+        fetch('/your-api-endpoint', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response from the server
+                console.log(data);
+            })
+            .catch((error) => {
+                // Handle any error that occurred
+                console.error(error);
+            });
     };
 
     return (
         <div className="board_main">
-            <div>
-                <p>Chosen number: {selectedNumber}</p>
-                <p>Chosen category: {selectedCategory}</p>
+            <div className="board">
+                <div>
+                    <div className="board">
+                        <button
+                            className={`number_button number_button_green`}
+                            onClick={() => handleNumberChoose(0)}
+                        >
+                            0
+                        </button>
+                        <button
+                            className={`number_button number_button_green`}
+                            onClick={() => handleNumberChoose(100)}
+                        >
+                            00
+                        </button>
+                    </div>
+                    <div className="board_numbers_buttons">
+                        {generate_all_number_buttons()}
+                    </div>
+                </div>
+                <div className="board_categories_buttons">
+                    {generate_categories_buttons_col1()}
+                </div>
+                <div className="board_categories_buttons">
+                    {generate_categories_buttons_col2()}
+                </div>
             </div>
-            <div className="board_numbers_buttons">{generate_all_number_buttons()}</div>
-            <div className="board_categories">{generate_all_categories_buttons()}</div>
+            <div className="chosen_info">
+                <br />
+                Chosen number: {selectedNumber}
+                <br />
+                Chosen category: {selectedCategory}
+                <br />
+                <button onClick={handleSubmit}>Submit</button>
+            </div>
         </div>
     );
 };
