@@ -6,23 +6,18 @@ import axios from "axios";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  var ResponseNickName = "";
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const nickName = event.target.nickName.value;
-    console.log(nickName);
-    const ResponseNickName = "";
     try {
         const response = await axios.post("/DB/user/add", { nickName });
-        console.log(response.data);
         const ResponseNickName = response.data.nickName;
-        navigate("/StartPage", { state: { ResponseNickName: ResponseNickName } });
+        navigate(`/StartPage?ResponseNickName=${ResponseNickName}`);
       } catch (error) {
         console.error(error);
       }
-    //navigate("/StartPage", { state: { nickName: ResponseNickName } });
-    //history.push('/StartPage', {nickName: nickName});
-    //navigate('/StartPage', { state: { nickName: nickName } });
   };
 
   return (

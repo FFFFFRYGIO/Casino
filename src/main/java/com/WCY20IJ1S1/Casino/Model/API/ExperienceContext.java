@@ -8,7 +8,7 @@ public class ExperienceContext {
     private String landing_page = "LOGIN";
     private String shipping_preference = "SET_PROVIDED_ADDRESS";
     private String user_action = "PAY_NOW";
-    private String return_url = "http://localhost:8080/HomePage";
+    private String return_url = "http://localhost:8080/API/check/";
     private String cancel_url = "https://example.com/cancelUrl";
 
     public String getPayment_method_preference() {

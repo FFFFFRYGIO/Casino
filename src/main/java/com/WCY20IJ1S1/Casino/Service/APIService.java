@@ -26,15 +26,17 @@ public class APIService {
     @Value("${env.PAYPAL_CLIENT_SECRET}")
     private String clientSecret;
 
-    public String CreateOrder(double Amount) throws URISyntaxException, IOException, InterruptedException {
+    public String CreateOrder(double Amount, String nickName) throws URISyntaxException, IOException, InterruptedException {
 
         String credentials = clientId + ":" + clientSecret;
         String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes());
         Transcript transcript = new Transcript();
+        transcript.getPurchaseUnits()[0].getAmount().setValue(String.valueOf(Amount));
+        String paymentReturn = transcript.getPaymentSource().getPayPal().getExperienceContext().getReturn_url();
+        transcript.getPaymentSource().getPayPal().getExperienceContext().setReturn_url(paymentReturn + String.valueOf(nickName));
         String PaymentLink;
         uri = new URI("https://api-m.sandbox.paypal.com/v2/checkout/orders");
         Gson gson = new Gson();
-        transcript.getPurchaseUnits()[0].getAmount().setValue(String.valueOf(Amount));
         String jsonRequest = gson.toJson(transcript);
         HttpRequest postRequest = HttpRequest.newBuilder()
                 .uri(uri)
@@ -52,7 +54,7 @@ public class APIService {
         return PaymentLink;
     }
 
-    public String ConfirmOrder() throws URISyntaxException, IOException, InterruptedException {
+    public String[] ConfirmOrder() throws URISyntaxException, IOException, InterruptedException {
 
         String credentials = clientId + ":" + clientSecret;
         String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes());
@@ -70,7 +72,7 @@ public class APIService {
         transcript = gson.fromJson(getResponse.body(), Transcript.class);
         PaidAmount = transcript.getPurchaseUnits()[0].getAmount().getValue();
         PaidStatus = transcript.getStatus();
-        return PaidAmount;
+        return new String[] {PaidAmount, PaidStatus};
     }
 
     // generating request id

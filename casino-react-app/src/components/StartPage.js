@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./StartPage.css"
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 
 const StartPage = () => {
     const [UserNick, setUserNick] = useState("");
@@ -10,14 +9,29 @@ const StartPage = () => {
     const [loading, setLoading] = useState(true);
 
     const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const ResponseNickName = searchParams.get('ResponseNickName');
+
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+            axios.get(`/DB/user/get/${ResponseNickName}`)
+                .then(response => {
+                    const { nickName, balance } = response.data;
+                    setUserNick(nickName);
+                    setUserBalance(balance);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error(error);
+                    setLoading(false);
+                });
+        }, [ResponseNickName]);
 
-
-    const handleChangeUser = () => {
-            navigate('/HomePage');
-        };
+     const handleChangeUser = () => {
+                navigate('/HomePage');
+            };
 
     return (
         <div>

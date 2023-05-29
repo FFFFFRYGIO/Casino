@@ -33,6 +33,10 @@ public class CasinoApplication {
 		home_page.addObject("user_name", "Radek");
 		return home_page;
 	}
+	@GetMapping("/StartPage")
+	public ModelAndView start() {
+		return new ModelAndView("../static/index");
+	}
 
 	@GetMapping("/roulette")
 	public void roulette() {
@@ -54,7 +58,7 @@ public class CasinoApplication {
 
 	@GetMapping("/paypal")
 	public void paypal() throws URISyntaxException, IOException, InterruptedException {
-		apiService.CreateOrder(15);
+		// apiService.CreateOrder(15);
 		apiService.ConfirmOrder();
 	}
 }
