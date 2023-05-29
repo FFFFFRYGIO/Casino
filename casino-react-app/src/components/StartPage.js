@@ -6,6 +6,7 @@ import axios from 'axios';
 const StartPage = () => {
     const [UserNick, setUserNick] = useState("");
     const [UserBalance, setUserBalance] = useState(0.0);
+    const [loading, setLoading] = useState(true);
 
     const location = useLocation();
     const { ResponseNickName } = location.state;
