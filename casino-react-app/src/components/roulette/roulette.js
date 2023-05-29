@@ -6,11 +6,11 @@ import './roulette.css';
 const Roulette = () => {
     return (
         <div className="roulette_main_div">
-            <div className="roulette_side">
+            <div>
                 <RouletteBoard>
                 </RouletteBoard>
             </div>
-            <div className="roulette_side">
+            <div>
                 <RouletteWheel>
                 </RouletteWheel>
             </div>

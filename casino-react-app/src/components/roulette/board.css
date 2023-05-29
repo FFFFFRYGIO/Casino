@@ -1,39 +1,62 @@
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .board_main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    flex-direction: column;
     font-size: 20px;
+    height: 100vh;
+    width: 100%;
+}
+
+.board_numbers {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+
+.board_categories {
+    position: absolute;
+    top: 100px;
+    left: 600px;
 }
 
 .board_numbers_buttons {
-    font-size: 30px;
-    color: #ffcc00;
-    font-family: "Agency FB", serif;
-    text-align: center;
-    padding: 5px 15px 5px 10px;
-    border: 5px solid black;
-    margin: 15px;
+    font-size: 20px;
+    color: white;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    border-radius: 100%;
+    background-color: aqua;
+}
+
+.number_button_red {
+
+}
+
+.number_button_black {
+
+}
+
+.number_button_green {
+
 }
 
 .board_categories_buttons {
     font-size: 30px;
     color: #ffcc00;
-    font-family: "Agency FB", serif;
-    text-align: center;
-    padding: 5px 15px 5px 10px;
-    border: 5px solid black;
-    margin: 15px;
+    background-color: #28775B;
+    margin-right: 50px;
+    margin-bottom: 50px;
 }
-
-/*.board_numbers {*/
-/*    position: absolute;*/
-/*    top: 100px;*/
-/*    left: 100px;*/
-/*}*/
-
-/*.board_categories {*/
-/*    position: absolute;*/
-/*    top: 200px;*/
-/*    left: 100px;*/
-/*}*/
