@@ -4,21 +4,23 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const StartPage = () => {
-    const { ResponseNickName } = useLocation();
     const [UserNick, setUserNick] = useState("");
     const [UserBalance, setUserBalance] = useState(0.0);
 
+    const location = useLocation();
+    const { ResponseNickName } = location.state;
+
     useEffect(() => {
-            axios.get("/DB/user/get/${ResponseNickName}")
+            axios.get(`/DB/user/get/${ResponseNickName}`)
                 .then(response => {
                     const { nickName, balance } = response.data;
                     setUserNick(nickName);
                     setUserBalance(balance);
-                    console.log(UserNick);
-                    console.log(UserBalance);
+                    setLoading(false);
                 })
                 .catch(error => {
                     console.error(error);
+                    setLoading(false);
                 });
         }, [ResponseNickName]);
 
