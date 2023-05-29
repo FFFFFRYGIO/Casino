@@ -111,13 +111,13 @@ const RouletteBoard = () => {
         return buttons;
     };
 
-    const handleSubmit = () => {
+    const parseBet = () => {
         const data = {
             selectedNumber: selectedNumber,
             selectedCategory: selectedCategory
         };
 
-        fetch('/your-api-endpoint', {
+        fetch('/Roulette', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -170,7 +170,7 @@ const RouletteBoard = () => {
                 <br />
                 Chosen category: {selectedCategory}
                 <br />
-                <button onClick={handleSubmit}>Submit</button>
+                <button className="parseBet" onClick={parseBet}>Submit bet</button>
             </div>
         </div>
     );
