@@ -4,6 +4,7 @@ import HomePage from './components/HomePage';
 import StartPage from './components/StartPage';
 import Roulette from './components/roulette/roulette';
 import Base from './components/Base';
+import Payment from './components/Payment/payment';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
                 <Route path="/HomePage" element={<HomePage />} />
                 <Route path="/StartPage" element={<StartPage />} />
                 <Route path="/Roulette" element={<Roulette />} />
+                <Route path="/payment" element={<Payment />} />
             </Routes>
         </BrowserRouter>
     </Base>

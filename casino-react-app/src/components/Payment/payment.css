@@ -1,0 +1,56 @@
+.topNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px; /* Dostosuj odpowiednio wartości paddingu */
+    box-sizing: border-box;
+}
+
+.topNav .left {
+    margin-right: auto;
+}
+
+.topNav .right {
+    margin-left: auto;
+}
+
+.GoBackButton{
+    font-size: 30px;
+    font-family: "Agency FB", serif;
+    text-align: center;
+    padding: 10px 20px 10px 15px;
+    margin: 15px;
+    display: inline-block;
+    border: 0.16em solid #b6884d;
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: #b6884d;
+}
+
+.AccBalance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-family: "Agency FB", serif;
+    border: 0.16em solid #b6884d;
+    background-color: #b6884d;
+    color: black;
+    text-align: center;
+    transition: all 0.2s;
+    border-radius: 2em;
+    padding: 10px 20px 10px 15px;
+}
+
+.GoBackButton:hover {
+  background-color: rgb(255, 255, 255);
+  border: 0.16em solid rgb(255, 255, 255);
+}

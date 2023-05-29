@@ -15,9 +15,9 @@ const HomePage = () => {
         const response = await axios.post("/DB/user/add", { nickName });
         const ResponseNickName = response.data.nickName;
         navigate(`/StartPage?ResponseNickName=${ResponseNickName}`);
-      } catch (error) {
+    } catch (error) {
         console.error(error);
-      }
+    }
   };
 
   return (
