@@ -7,12 +7,14 @@ html, body {
 }
 
 .content {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
-    background-color: 28775B;
+    width: 100%;
+    background-color: #28775B;
     color: white;
     padding: 20px;
 }
@@ -29,18 +31,13 @@ button {
 }
 
 footer {
-    margin-top: auto;
-    margin-bottom: 80px;
-    display: flex;
+    position: absolute;
+    bottom: 0;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    display: flex;
     border-top: 2px solid #fff;
-    width: 80%;
-}
-
-footer p {
-    margin: 0;
+    width: 75%;
 }
 
 footer .casino-name {
@@ -63,24 +60,28 @@ footer .authors {
 }
 
 .top-left {
+    position: absolute;
     top: 0;
     left: 0;
-    rotate: 180deg;
+    transform: rotate(180deg);
 }
 
 .top-right {
+    position: absolute;
     top: 0;
     right: 0;
-    rotate: 270deg;
+    transform: rotate(270deg);
 }
 
 .bottom-left {
+    position: absolute;
     bottom: 0;
     left: 0;
-    rotate: 90deg;
+    transform: rotate(90deg);
 }
 
 .bottom-right {
+    position: absolute;
     bottom: 0;
     right: 0;
 }

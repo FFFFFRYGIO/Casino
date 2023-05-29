@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Base from './Base';
 import "./StartPage.css"
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const StartPage = () => {
@@ -24,7 +23,7 @@ const StartPage = () => {
         }, [ResponseNickName]);
 
     return (
-        <Base>
+        <div>
             <div className="options">
                 <button className="option-button"><img className="icon" src="user_icon.png" alt="user_icon" /> {UserNick} (Change)</button>
                 <button className="option-button"><img className="icon" src="user_icon.png" alt="user_icon" /> {UserNick} (View)</button>
@@ -50,7 +49,7 @@ const StartPage = () => {
                     <p className="game-caption">Slot Machine</p>
                 </div>
             </div>
-        </Base>
+        </div>
     );
 };
 

@@ -1,0 +1,12 @@
+.wheel_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 20px;
+}
+
+.roulette_wheel {
+    width: 400px;
+    height: 400px;
+}
