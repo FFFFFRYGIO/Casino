@@ -21,7 +21,7 @@ const HomePage = () => {
   };
 
   return (
-    <Base>
+
       <div className="content">
         <div class="Box">
           <img src="logo.png" alt="logo" class="logo" />
@@ -38,7 +38,7 @@ const HomePage = () => {
           </form>
         </div>
       </div>
-    </Base>
+
   );
 };
 
