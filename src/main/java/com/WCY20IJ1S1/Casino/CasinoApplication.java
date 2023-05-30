@@ -42,10 +42,8 @@ public class CasinoApplication {
 	}
 
 	@GetMapping("/Roulette")
-	public void roulette() {
-		rouletteService.RouletteSpinning();
-		rouletteService.UserBets("C-1.14.2.5.6.00", null);
-		rouletteService.WinnerOrLoser(15, 0);
+	public ModelAndView roulette() {
+		return new ModelAndView("../static/index");
 	}
 
 	@GetMapping("/blackjack")
