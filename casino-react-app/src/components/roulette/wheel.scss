@@ -1,0 +1,461 @@
+$platesize: 350px;
+$pitwidth: 32px;
+$rimsize: 6px;
+$trim: gold;
+$trimSecondary: silver;
+$spinButton: green;
+$resetButton: darkgreen;
+$spins: 8;
+$from: 1;
+$to: 38;
+$half: $to / 2;
+$rotate: (360 / $to) + 0deg;
+
+@for $index from 1 through $to {
+  .number:nth-child(#{$index}) {
+    transform: rotateZ($rotate * $index);
+  }
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #300;
+  background-size: 100px 100px;
+}
+
+.main {
+  width: $platesize + 24;
+  margin: 0 auto;
+}
+
+.plate {
+  background-color: gray;
+  width: $platesize;
+  height: $platesize;
+  margin: $rimsize * 2;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 24s infinite linear;
+
+  &:after,
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  &:after {
+    top: -$rimsize;
+    right: -$rimsize;
+    bottom: -$rimsize;
+    left: -$rimsize;
+    border: $rimsize solid $trim;
+    box-shadow: inset 0 0 0 $rimsize / 3 darken($trim, 15%),
+                0 0 0 $rimsize / 3 lighten($trim, 25%);
+  }
+
+  &:before {
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid $trimSecondary;
+    box-shadow: inset 0 0 0 2px darken($trimSecondary, 25%);
+    top: 12%;
+    left: 12%;
+    right: 12%;
+    bottom: 12%;
+    z-index: 1;
+  }
+}
+
+.number {
+  width: $pitwidth;
+  height: $platesize / 2;
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: calc(50% - (#{$pitwidth} / 2));
+  transform-origin: 50% 100%;
+  background-color: transparent;
+  border-left: $pitwidth / 2 solid transparent;
+  border-right: $pitwidth / 2 solid transparent;
+  border-top: $platesize / 2 solid black;
+  box-sizing: border-box;
+
+  &:nth-child(even) {
+    border-top-color: red;
+  }
+
+  &:nth-child(#{$to}) {
+    border-top-color: green;
+  }
+
+  &:nth-child(#{$half}) {
+    border-top-color: green;
+  }
+}
+
+.pit {
+  color: #fff;
+  padding-top: 12px;
+  width: $pitwidth;
+  display: inline-block;
+  font-size: 12px;
+  transform: scale(1, 1.8);
+  position: absolute;
+  top: -(($platesize / 2));
+  left: -(($pitwidth / 2));
+}
+
+@mixin spinto($d) {
+  transform: rotateZ(((360 * -$spins) + $d) + 0deg);
+  transition: transform 9s ease-out;
+  content: "\2022";
+}
+
+.inner {
+  display: block;
+  height: $platesize;
+  width: $platesize;
+
+  &:after,
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  &:after {
+    z-index: 3;
+    top: 24%;
+    right: 24%;
+    bottom: 24%;
+    left: 24%;
+    background-color: darken($trimSecondary, 45%);
+    border: 3px solid darken($trimSecondary, 25%);
+  }
+
+  &:before {
+    top: 24%;
+    bottom: 21%;
+    left: 24%;
+    right: 22%;
+    content: '';
+    color: #fff;
+    font-size: 60px;
+    z-index: 5;
+    border-radius: 0;
+  }
+
+    &[data-spinto='1']:before {
+      @include spinto(223);
+    }
+
+    &[data-spinto='2']:before {
+      @include spinto(402);
+    }
+
+    &[data-spinto='3']:before {
+      @include spinto(183);
+    }
+
+    &[data-spinto='4']:before {
+      @include spinto(364);
+    }
+
+    &[data-spinto='5']:before {
+      @include spinto(144);
+    }
+
+    &[data-spinto='6']:before {
+      @include spinto(328);
+    }
+
+    &[data-spinto='7']:before {
+      @include spinto(108);
+    }
+
+    &[data-spinto='8']:before {
+      @include spinto(289);
+    }
+
+    &[data-spinto='9']:before {
+      @include spinto(70);
+    }
+
+    &[data-spinto='10']:before {
+      @include spinto(251);
+    }
+
+    &[data-spinto='11']:before {
+      @include spinto(99);
+    }
+
+    &[data-spinto='12']:before {
+      @include spinto(279);
+    }
+
+    &[data-spinto='13']:before {
+      @include spinto(213);
+    }
+
+    &[data-spinto='14']:before {
+      @include spinto(393);
+    }
+
+    &[data-spinto='15']:before {
+      @include spinto(173);
+    }
+
+    &[data-spinto='16']:before {
+      @include spinto(355);
+    }
+
+    &[data-spinto='17']:before {
+      @include spinto(135);
+    }
+
+    &[data-spinto='18']:before {
+      @include spinto(319);
+    }
+
+    &[data-spinto='19']:before {
+      @include spinto(299);
+    }
+
+    &[data-spinto='20']:before {
+      @include spinto(117);
+    }
+
+    &[data-spinto='21']:before {
+      @include spinto(337);
+    }
+
+    &[data-spinto='22']:before {
+      @include spinto(153);
+    }
+
+    &[data-spinto='23']:before {
+      @include spinto(374);
+    }
+
+    &[data-spinto='24']:before {
+      @include spinto(193);
+    }
+
+    &[data-spinto='25']:before {
+      @include spinto(260);
+    }
+
+    &[data-spinto='26']:before {
+      @include spinto(80);
+    }
+
+    &[data-spinto='27']:before {
+      @include spinto(242);
+    }
+
+    &[data-spinto='28']:before {
+      @include spinto(60);
+    }
+
+    &[data-spinto='29']:before {
+      @include spinto(269);
+    }
+
+    &[data-spinto='30']:before {
+      @include spinto(90);
+    }
+
+    &[data-spinto='31']:before {
+      @include spinto(309);
+    }
+
+    &[data-spinto='32']:before {
+      @include spinto(126);
+    }
+
+    &[data-spinto='33']:before {
+      @include spinto(346);
+    }
+
+    &[data-spinto='34']:before {
+      @include spinto(163);
+    }
+
+    &[data-spinto='35']:before {
+      @include spinto(384);
+    }
+
+    &[data-spinto='36']:before {
+      @include spinto(203);
+    }
+
+    &[data-spinto='0']:before {
+      @include spinto(50);
+    }
+
+    &[data-spinto='00']:before {
+      @include spinto(233);
+    }
+
+  &.rest:before {
+    transition: top .5s ease-in, right .5s ease-in, bottom .5s ease-in, left .5s ease-in;
+    top: 25%;
+    right: 25%;
+    bottom: 24%;
+    left: 25%;
+  }
+}
+
+.btn {
+  background: $spinButton;
+  border: 1px solid darken($spinButton, 30%);
+  border-top-color: lighten($spinButton, 10%);
+  border-left-color: lighten($spinButton, 10%);
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  font-size: 15px;
+  width: $platesize / 2;
+  padding: 12px;
+  margin: 12px;
+  cursor: pointer;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 3px;
+
+  .btn-label {
+    padding: 12px;
+    white-space: nowrap;
+  }
+
+  &.btn-reset {
+    background: $resetButton;
+    border: 1px solid darken($resetButton, 30%);
+    border-top-color: lighten($resetButton, 10%);
+    border-left-color: lighten($resetButton, 10%);
+  }
+
+  &.disabled {
+    opacity: 0.2;
+    transition: opacity 0.24s linear;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes rotate{
+  0%{
+    transform:rotateZ(0deg);
+  }
+  100%{
+    transform:rotateZ(360deg);
+  }
+}
+
+.data {
+  display: block;
+  position: absolute;
+  top: 30%;
+  right: 30%;
+  bottom: 30%;
+  left: 30%;
+  border-radius: 50%;
+  animation: rotate 24s reverse linear infinite;
+  perspective: 2000px;
+  z-index: 100;
+
+  .data-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.72s;
+    transform-style: preserve-3d;
+  }
+
+  &.reveal .data-inner {
+    transform: rotateY(180deg);
+  }
+
+  .mask,
+  .result {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .mask {
+    color: #fff;
+    font-size: 24px;
+    margin: auto;
+    line-height: 1.4;
+    padding-top: 36px;
+  }
+
+  .result {
+    background-color: green;
+    color: white;
+    transform: rotateY(180deg);
+    align-items: center;
+    color: #fff;
+  }
+
+  .result-number {
+    font-size: 72px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 12px;
+  }
+
+  .result-color {
+    text-transform: uppercase;
+    font-size: 21px;
+    line-height: 1;
+  }
+}
+
+
+.previous-result {
+  display: flex;
+  margin: 1px;
+  padding: 12px;
+  color: #fff;
+
+  &:first-child {
+    animation: flipin 0.48s ease-out;
+  }
+
+  .previous-number {
+    flex: 1;
+  }
+}
+
+.color-green {
+  background-color: green;
+}
+
+.color-black {
+  background-color: black;
+}
+
+.color-red {
+  background-color: red;
+}
+
+@keyframes flipin {
+  0% {
+    transform: rotateX(90deg);
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+}
