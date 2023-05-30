@@ -37,6 +37,10 @@ const StartPage = () => {
         navigate(`/payment?ResponseNickName=${UserNick}`);
     }
 
+    const handleGoRoulette = () => {
+        navigate(`/Roulette?ResponseNickName=${UserNick}`);
+    }
+
 
     return (
         <div>
@@ -65,7 +69,7 @@ const StartPage = () => {
                     </div>
                 </div>
                 <div className="game">
-                    <button className="game-button">
+                    <button className="game-button" onClick={handleGoRoulette}>
                             <div class="outer-border">
                                  <div class="mid-border">
                                       <div class="inner-border">

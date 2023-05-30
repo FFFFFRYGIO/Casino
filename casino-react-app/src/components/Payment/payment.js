@@ -79,7 +79,7 @@ const Payment = () => {
                         <div class="outer-border">
                              <div class="mid-border">
                                   <div class="inner-border">
-                                     <img className="icon" src="Money-lvl1.jpg" alt="blackjack_icon" />
+                                     <img className="icon2" src="Money-lvl1.jpg" alt="blackjack_icon" />
                                   </div>
                               </div>
                         </div>
@@ -97,7 +97,7 @@ const Payment = () => {
                         <div class="outer-border">
                              <div class="mid-border">
                                   <div class="inner-border">
-                                     <img className="icon" src="Money-lvl2.jpg" alt="blackjack_icon" />
+                                     <img className="icon2" src="Money-lvl2.jpg" alt="blackjack_icon" />
                                   </div>
                               </div>
                         </div>
@@ -115,7 +115,7 @@ const Payment = () => {
                         <div class="outer-border">
                              <div class="mid-border">
                                   <div class="inner-border">
-                                     <img className="icon" src="Money-lvl3.jpg" alt="blackjack_icon" />
+                                     <img className="icon2" src="Money-lvl3.jpg" alt="blackjack_icon" />
                                   </div>
                               </div>
                         </div>
@@ -133,7 +133,7 @@ const Payment = () => {
                         <div class="outer-border">
                              <div class="mid-border">
                                   <div class="inner-border">
-                                     <img className="icon" src="Money-lvl4.jpg" alt="blackjack_icon" />
+                                     <img className="icon2" src="Money-lvl4.jpg" alt="blackjack_icon" />
                                   </div>
                               </div>
                         </div>
@@ -151,7 +151,7 @@ const Payment = () => {
                         <div class="outer-border">
                              <div class="mid-border">
                                   <div class="inner-border">
-                                     <img className="icon" src="Money-lvl5.jpg" alt="blackjack_icon" />
+                                     <img className="icon2" src="Money-lvl5.jpg" alt="blackjack_icon" />
                                   </div>
                               </div>
                         </div>
