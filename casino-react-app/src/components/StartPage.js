@@ -45,9 +45,11 @@ const StartPage = () => {
     return (
         <div>
             <div className="options">
-                <button className="option-button" onClick={handleChangeUser}><img className="icon" src="signOut.png" alt="user_icon" /> Sign Out </button>
-                <button className="option-button"><img className="icon" src="user_icon.png" alt="user_icon" /> {UserNick} Profile </button>
-                <button className="option-button" onClick={handleAddBalance}> {UserBalance}$ &nbsp; <img className="icon" src="money_icon.png" alt="money_icon" /></button>
+                <div className="options_frame">
+                    <button className="option-button" onClick={handleChangeUser}><img className="icon" src="signOut.png" alt="user_icon" /> Sign Out </button>
+                    <button className="option-button"><img className="icon" src="user_icon.png" alt="user_icon" /> {UserNick} Profile </button>
+                    <button className="option-button" onClick={handleAddBalance}> {UserBalance}$ &nbsp; <img className="icon" src="money_icon.png" alt="money_icon" /></button>
+                </div>
             </div>
             <div className="games">
                 <div className="game">

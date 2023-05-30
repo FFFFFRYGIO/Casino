@@ -12,14 +12,18 @@ input[type="text"]:required {
     text-align: center;
 }
 
-.logo{
-    padding-bottom: 30px;
-    width: 500px;
-    height: 400px;
+.logodiv {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-* {
-  box-sizing: border-box;
+.logo{
+    padding-bottom: 30px;
+    width: 550px;
+    height: 400px;
 }
 
 .poker-chip-button {

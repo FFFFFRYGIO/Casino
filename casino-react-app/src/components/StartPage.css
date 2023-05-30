@@ -1,4 +1,8 @@
 .options {
+    padding-top: 100px;
+}
+
+.options_frame {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +25,6 @@
     box-sizing: border-box;
     text-decoration: none;
     color: black;
-    text-align: center;
     transition: all 0.2s;
     background-color: #b6884d;
 }
@@ -58,33 +61,24 @@
     height: 30px;
 }
 
-.inner-border {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
 .outer-border {
 	border: 2px solid #b6884d;
-   	height: 99%;
-    width: 98%;
     padding: 6px;
     margin: 0 auto;
 }
 
 .mid-border {
     border: 6px solid #b6884d;
-    height: 100%;
-    width: 100%;
     padding: 6px;
     margin: auto;
 }
 
 .inner-border {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 	position: relative;
 	border: 2px solid #b6884d;
-    height: 100%;
-    width: 100%;
     margin: auto;
 }
 

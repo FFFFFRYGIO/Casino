@@ -23,8 +23,9 @@ const HomePage = () => {
   return (
 
       <div className="content">
-        <div class="Box">
-          <img src="logo.png" alt="logo" class="logo" />
+          <div className="logodiv">
+            <img src="logo.png" alt="logo" class="logo" />
+          </div>
           <form onSubmit={handleFormSubmit}>
             <input
               type="text"
@@ -36,7 +37,6 @@ const HomePage = () => {
               <img src="arrow.png" alt="arrow" />
             </button>
           </form>
-        </div>
       </div>
 
   );
