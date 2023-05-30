@@ -23,6 +23,7 @@
 .icon {
     width: 150px;
     height: 150px;
+    padding: 10px;
 }
 
 .back_money_prompt {
@@ -74,14 +75,15 @@
 }
 
 .GoBackButton{
-    font-size: 30px;
+    width: 130px;
+    height: 80px;
     font-family: "Agency FB", serif;
     text-align: center;
     padding: 10px 20px 10px 15px;
     margin: 15px;
     display: inline-block;
     border: 0.16em solid #b6884d;
-    border-radius: 2em;
+    border-radius: 30%;
     box-sizing: border-box;
     text-decoration: none;
     color: black;
@@ -90,7 +92,9 @@
 }
 
 .AccBalance {
-    font-size: 15px;
+    width: 130px;
+    height: 80px;
+    font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,7 +104,7 @@
     color: black;
     text-align: center;
     transition: all 0.2s;
-    border-radius: 2em;
+    border-radius: 30%;
     padding: 10px 20px 10px 15px;
 }
 
