@@ -50,22 +50,28 @@ const Payment = () => {
     };
 
     return (
-        <div>
+        <div className="payment_main">
             <div className="topNav">
                 <div className="left">
-                    <button className="GoBackButton" onClick={handleGoBack}><img className="icon" src="left-arrow.png" alt="user_icon" /></button>
+                    <button className="GoBackButton" onClick={handleGoBack}><img className="icon back_money_prompt" src="left-arrow.png" alt="user_icon" /></button>
                 </div>
                 <div className="right">
                     <div className="AccBalance">
                         <p>{UserBalance}$ &nbsp;</p>
-                        <img className="icon" src="money_icon.png" alt="money_icon" />
+                        <img className="icon back_money_prompt" src="money_icon.png" alt="money_icon" />
                     </div>
                 </div>
             </div>
             <div className="Info">
-                <p>Choose how much money you would like to deposit: </p>
+                <div className="tag-container tag-center">
+                    <div className="tag tag2">
+                        Choose how much money you would like to deposit
+                        <div className="tag-tail-left"></div>
+                        <div className="tag-tail-right"></div>
+                    </div>
+                </div>
             </div>
-            <div className="MoneyOptions">
+            <div className="MoneyOptionsContainer">
                 <div className="MoneyOption">
                     <button class="money-option-button" id="100" onClick={makeMoneyClick}>
                         <div class="outer-border">

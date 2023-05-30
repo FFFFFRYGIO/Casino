@@ -1,21 +1,76 @@
+.payment_main {
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+}
+
 .topNav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 10px 20px; /* Dostosuj odpowiednio wartości paddingu */
-    box-sizing: border-box;
 }
 
 .topNav .left {
-    margin-right: auto;
+    justify-content: center;
+    align-items: center;
 }
 
 .topNav .right {
     margin-left: auto;
+}
+
+.icon {
+    width: 150px;
+    height: 150px;
+}
+
+.back_money_prompt {
+    width: 50px;
+    height: 50px;
+}
+
+.Info {
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.MoneyOptionsContainer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.MoneyOption {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.MoneyOptions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tag {
+    padding: 0;
+    min-width: 150px;
+}
+
+.tag2 {
+    padding: 0;
+    min-width: 150px;
+    width: 1000px;
+    height: 50px;
 }
 
 .GoBackButton{
@@ -30,16 +85,15 @@
     box-sizing: border-box;
     text-decoration: none;
     color: black;
-    text-align: center;
     transition: all 0.2s;
     background-color: #b6884d;
 }
 
 .AccBalance {
+    font-size: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
     font-family: "Agency FB", serif;
     border: 0.16em solid #b6884d;
     background-color: #b6884d;
