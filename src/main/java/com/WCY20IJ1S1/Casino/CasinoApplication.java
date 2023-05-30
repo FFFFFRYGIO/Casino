@@ -37,6 +37,10 @@ public class CasinoApplication {
 	public ModelAndView start() {
 		return new ModelAndView("../static/index");
 	}
+	@GetMapping("/payment")
+	public ModelAndView pay(){
+		return new ModelAndView("../static/index");
+	}
 
 	@GetMapping("/Roulette")
 	public void roulette() {

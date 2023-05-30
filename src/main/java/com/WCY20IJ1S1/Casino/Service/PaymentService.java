@@ -33,7 +33,6 @@ public class PaymentService {
                 .matching(Criteria.where("nickName").is(nickName))
                 .apply(new Update().push("history").value(payment).set("balance", payment.getValue()))
                 .first();
-
         return payment;
     }
 }

@@ -26,13 +26,16 @@ public class APIController {
     private APIService apiService;
     @Autowired
     private PaymentService paymentService;
-    //@GetMapping("/{amount}")
     @PostMapping()
-    public RedirectView makePayment(@RequestBody Map<String, String> payload) throws URISyntaxException, IOException, InterruptedException {
-    //public RedirectView makePayment(@PathVariable ("amount") String amount) throws URISyntaxException, IOException, InterruptedException {
+    public ResponseEntity<String> makePayment(@RequestBody Map<String, String> payload) throws URISyntaxException, IOException, InterruptedException {
         String paymentUrl = apiService.CreateOrder(Double.parseDouble(payload.get("amount")), payload.get("nickName"));
-        //String paymentUrl = apiService.CreateOrder(Double.parseDouble(amount), "kuba");
-        //System.out.println(paymentUrl);
+        return new ResponseEntity<>("{\"paymentUrl\" : \"" + paymentUrl + "\"}", HttpStatus.CREATED);
+    }
+    @GetMapping("/{amount}")
+    public RedirectView makePayment(@PathVariable ("amount") String amount) throws URISyntaxException, IOException, InterruptedException {
+        String paymentUrl = apiService.CreateOrder(Double.parseDouble(amount), "Mateusz");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
         return new RedirectView(paymentUrl);
     }
 

@@ -32,21 +32,23 @@ const Payment = () => {
             });
     }, [ResponseNickName]);
 
-    const makeMoneyClick = (event) => {
+    const makeMoneyClick = async (event) => {
         amount = event.currentTarget.id;
-//        try {
-//            const response = await axios.post("/API", {
-//            nickName: ResponseNickName,
-//            amount: amount});
-//            const ResponseNickName = response.data.nickName;
-//        } catch (error) {
-//            console.error(error);
-//        }
-        console.log(amount);
+        try {
+            const response = await axios.post("/API", {
+            nickName: ResponseNickName,
+            amount: amount});
+            const ResponseURL = response.data.paymentUrl;
+            console.log(amount);
+            console.log(ResponseURL);
+            window.open(ResponseURL, '_self');
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const handleGoBack = () => {
-         navigate(`/StartPage?ResponseNickName=${ResponseNickName}`);
+         navigate(`/StartPage?ResponseNickName=${UserNick}`);
     };
 
     return (
