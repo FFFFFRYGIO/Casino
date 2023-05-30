@@ -52,11 +52,6 @@ public class RouletteService {
 
             switch(size) {
                 case 1: Odds = 35; break;
-                case 2: Odds = 17; break;
-                case 3: Odds = 11; break;
-                case 4: Odds = 8; break;
-                case 5: Odds = 6; break;
-                case 6: Odds = 5; break;
             }
             WinningMoney += BetMoney1 + Odds * BetMoney1;
         }

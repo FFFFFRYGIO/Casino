@@ -28,7 +28,6 @@ public class CasinoApplication {
 
 	@GetMapping("/HomePage")
 	public ModelAndView home() {
-		// ModelAndView home_page = new ModelAndView("../../../../casino-react-app/src/components/home");
 		ModelAndView home_page = new ModelAndView("../static/index");
 		home_page.addObject("user_name", "Radek");
 		return home_page;
@@ -62,7 +61,6 @@ public class CasinoApplication {
 
 	@GetMapping("/paypal")
 	public void paypal() throws URISyntaxException, IOException, InterruptedException {
-		// apiService.CreateOrder(15);
 		apiService.ConfirmOrder();
 	}
 }
