@@ -42,6 +42,14 @@ const RouletteBoard = () => {
             buttons.push(generate_number_button(i));
         }
 
+        // Add 3 for the n%3 categories:
+        buttons.push(<button className={`number_button`}
+                             onClick={() => handleCategoryChoose("2to1:n%3=1")}>{"2to1"}</button>);
+        buttons.push(<button className={`number_button`}
+                             onClick={() => handleCategoryChoose("2to1:n%3=2")}>{"2to1"}</button>);
+        buttons.push(<button className={`number_button`}
+                             onClick={() => handleCategoryChoose("2to1:n%3=0")}>{"2to1"}</button>);
+
         return buttons;
     };
 
