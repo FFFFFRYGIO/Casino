@@ -24,7 +24,7 @@ public class RouletteController {
     @GetMapping("/Spinning")
     public ResponseEntity<String> RouletteSpinning(){
         String winningNumber = rouletteService.RouletteSpinning();
-        return new ResponseEntity<>("{\"winningNumber\" : \"" + "33" + "\"}", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"winningNumber\" : \"" + winningNumber + "\"}", HttpStatus.CREATED);
     }
 
     @PostMapping("/Bets")

@@ -77,6 +77,11 @@ const Roulette = () => {
         try{
             const response = await axios.get("/R/Spinning");
             setWinningNumber(response.data.winningNumber);
+            if (response.data.winningNumber === '00'){
+                setWinningNumber(37);
+            }else{
+                setWinningNumber(parseInt(response.data.winningNumber, 10));
+            }
             return response.data.winningNumber;
         }catch (error) {
             console.error(error);
