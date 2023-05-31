@@ -80,7 +80,7 @@ const Roulette = () => {
             if (response.data.winningNumber === '00'){
                 setWinningNumber(37);
             }else{
-                setWinningNumber(parseInt(response.data.winningNumber, 10));
+                setWinningNumber(parseFloat(response.data.winningNumber));
             }
             return response.data.winningNumber;
         }catch (error) {
@@ -131,7 +131,8 @@ const Roulette = () => {
             <div>
                 <RouletteBoard
                 getValueFromBoard={getValueFromBoard}
-                getChipValue={getChipValue}>
+                getChipValue={getChipValue}
+                UserBalance={UserBalance}>
                 </RouletteBoard>
             </div>
             <div>

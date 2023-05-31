@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './board.css';
 
-const RouletteBoard = ({getValueFromBoard, getChipValue}) => {
+const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
     const [selectedNumber, setSelectedNumber] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -190,29 +190,16 @@ const RouletteBoard = ({getValueFromBoard, getChipValue}) => {
         };
         getValueFromBoard(bets, chips);
         handleReset();
-
-        // fetch('/Roulette', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         // Handle the response from the server
-        //         console.log(data);
-        //     })
-        //     .catch((error) => {
-        //         // Handle any error that occurred
-        //         console.error(error);
-        //     });
     };
 
 
     const handleChip = (event) => {
-        setAmount(parseFloat(event.currentTarget.id));
-        setDisabled(false);
+        if(UserBalance - parseFloat(event.currentTarget.id) >= 0){
+            setAmount(parseFloat(event.currentTarget.id));
+            setDisabled(false);
+        }else{
+            setDisabled(true);
+        }
     }
 
     const handleReset = () => {
