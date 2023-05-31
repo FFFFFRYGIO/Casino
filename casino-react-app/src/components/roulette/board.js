@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './board.css';
 
-const RouletteBoard = ({getValueFromBoard}) => {
+const RouletteBoard = ({getValueFromBoard, getChipValue}) => {
     const [selectedNumber, setSelectedNumber] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -15,8 +15,9 @@ const RouletteBoard = ({getValueFromBoard}) => {
     const handleNumberChoose = (number) => {
         if (number === 100) setSelectedNumber("00");
         else setSelectedNumber(number);
-        // console.log(selectedNumber);
         bets[0] = number.toString();
+        // await returnChipValue(chips[0]);
+        getChipValue(amount - chips[0]);
         chips[0] = amount;
         console.log(bets);
         console.log(chips);
@@ -27,7 +28,8 @@ const RouletteBoard = ({getValueFromBoard}) => {
 
     const handleCategoryChoose = (category) => {
         setSelectedCategory(category);
-        bets[1] = category;
+        bets[1] = generateNumbers(category).join('.');
+        getChipValue(amount - chips[1]);
         chips[1] = amount;
         console.log(bets);
         console.log(chips);
@@ -39,6 +41,41 @@ const RouletteBoard = ({getValueFromBoard}) => {
     const black_numbers = [
         2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35
     ];
+    const all_numbers = [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+        31, 32, 33, 34, 35, 36
+    ];
+
+    const generateNumbers = (category) => {
+        if (category === "1st12"){
+            return all_numbers.filter(num => num <= 12);
+        }else if (category === "2nd12"){
+            return all_numbers.filter(num => num >= 13 && num <= 24);
+        }else if(category === "3rd12"){
+            return all_numbers.filter(num => num >= 25);
+        }else if(category === "2to1:n%3=1"){
+            return all_numbers.filter(num => num % 3 === 1);
+        }else if(category === "2to1:n%3=2"){
+            return all_numbers.filter(num => num % 3 === 2);
+        }else if(category === "2to1:n%3=0"){
+            return all_numbers.filter(num => num % 3 === 0);
+        }else if(category === "1to18"){
+            return all_numbers.filter(num => num <= 18);
+        }else if(category === "19to36"){
+            return all_numbers.filter(num => num >= 19);
+        }else if(category === "even"){
+            return all_numbers.filter(num => num % 2 === 0);
+        }else if(category === "odd"){
+            return all_numbers.filter(num => num % 2 === 1);
+        }else if(category === "Red"){
+            return all_numbers.filter(num => !black_numbers.includes(num));
+        }else if(category === "Black"){
+            return black_numbers;
+        }
+
+    };
 
     const generate_number_button = (number) => {
         let coloring = "number_button_green";
@@ -152,23 +189,24 @@ const RouletteBoard = ({getValueFromBoard}) => {
             selectedCategory: selectedCategory
         };
         getValueFromBoard(bets, chips);
+        handleReset();
 
-        fetch('/Roulette', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                // Handle the response from the server
-                console.log(data);
-            })
-            .catch((error) => {
-                // Handle any error that occurred
-                console.error(error);
-            });
+        // fetch('/Roulette', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // })
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         // Handle the response from the server
+        //         console.log(data);
+        //     })
+        //     .catch((error) => {
+        //         // Handle any error that occurred
+        //         console.error(error);
+        //     });
     };
 
 

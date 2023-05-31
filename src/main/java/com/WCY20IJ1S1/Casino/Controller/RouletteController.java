@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/Roulette")
+@RequestMapping("/R")
 public class RouletteController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class RouletteController {
     @GetMapping("/Spinning")
     public ResponseEntity<String> RouletteSpinning(){
         String winningNumber = rouletteService.RouletteSpinning();
-        return new ResponseEntity<>("{\"winningNumber\" : \"" + winningNumber + "\"}", HttpStatus.OK);
+        return new ResponseEntity<>("{\"winningNumber\" : \"" + winningNumber + "\"}", HttpStatus.CREATED);
     }
 
     @PostMapping("/Bets")
@@ -35,6 +35,6 @@ public class RouletteController {
     @PostMapping("/WinningMoney")
     public ResponseEntity<String> WinnerOrLoser(@RequestBody Map<String, Double> payload){
         double winningMoney = rouletteService.WinnerOrLoser(payload.get("BetMoney1"), payload.get("BetMoney2"));
-        return new ResponseEntity<>("{\"winningMoney\" : " + winningMoney + "}", HttpStatus.OK);
+        return new ResponseEntity<>("{\"winningMoney\" : " + winningMoney + "}", HttpStatus.CREATED);
     }
 }

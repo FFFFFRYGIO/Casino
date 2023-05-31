@@ -42,6 +42,8 @@ public class RouletteService {
         }
     }
 
+
+
     public double WinnerOrLoser(double BetMoney1, double BetMoney2){
 
         double WinningMoney = 0;
