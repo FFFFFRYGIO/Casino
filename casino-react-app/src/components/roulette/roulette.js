@@ -10,6 +10,9 @@ const Roulette = () => {
     const [UserBalance, setUserBalance] = useState(0.0);
     const [loading, setLoading] = useState(true);
 
+    const [bets, setBets] = useState(['', '']);
+    const [chips, setChips] = useState([0, 0]);
+
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const ResponseNickName = searchParams.get('ResponseNickName');
@@ -34,6 +37,14 @@ const Roulette = () => {
          navigate(`/StartPage?ResponseNickName=${UserNick}`);
     };
 
+    const getValueFromBoard = (b, c) => {
+        setBets(b);
+        setChips(c);
+
+        console.log(b);
+        console.log(c);
+      };
+
     return (
         <div className="roulette_main_div">
             <div className="topNav">
@@ -48,7 +59,8 @@ const Roulette = () => {
                 </div>
             </div>
             <div>
-                <RouletteBoard>
+                <RouletteBoard
+                getValueFromBoard={getValueFromBoard}>
                 </RouletteBoard>
             </div>
             <div>
