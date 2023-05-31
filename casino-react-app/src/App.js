@@ -5,6 +5,7 @@ import StartPage from './components/StartPage';
 import Roulette from './components/roulette/roulette';
 import Base from './components/Base';
 import Payment from './components/Payment/payment';
+import Slot from './components/SlotMachine/slot';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
                 <Route path="/StartPage" element={<StartPage />} />
                 <Route path="/Roulette" element={<Roulette />} />
                 <Route path="/Payment" element={<Payment />} />
+                <Route path="/Slot" element={<Slot />} />
             </Routes>
         </BrowserRouter>
     </Base>
