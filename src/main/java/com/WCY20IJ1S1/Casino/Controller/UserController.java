@@ -27,11 +27,8 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{nickName}")
-    public ResponseEntity<String> deleteUser(@PathVariable("nickName") String nickName){
+    public void deleteUser(@PathVariable("nickName") String nickName){
         userService.deleteUser(nickName);
-        return ResponseEntity.ok()
-                .header("Location", "")
-                .body("Delete");
     }
 
     @GetMapping("/get/{nickName}")
@@ -39,5 +36,14 @@ public class UserController {
         User user = userService.findUser(nickName);
         System.out.println(user.getNickName());
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @PutMapping("/put")
+    public ResponseEntity<User> updateUser(@RequestBody Map<String, String> payload){
+        return new ResponseEntity<>(
+                userService.updateData(
+                        payload.get("oldNickName"),
+                        payload.get("newNickName")),
+                HttpStatus.OK);
     }
 }

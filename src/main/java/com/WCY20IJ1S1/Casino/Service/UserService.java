@@ -34,4 +34,16 @@ public class UserService {
     public void deleteUser(String nickName){
         userRepository.deleteUserByNickName(nickName);
     }
+
+    public User updateData(String oldNicName, String newNickName) {
+        Optional<User> optionalUser = userRepository.findUserByNickName(oldNicName);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            deleteUser(oldNicName);
+            user.setNickName(newNickName);
+            return userRepository.save(user);
+        }else{
+            return null;
+        }
+    }
 }

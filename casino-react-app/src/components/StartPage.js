@@ -41,13 +41,16 @@ const StartPage = () => {
         navigate(`/Roulette?ResponseNickName=${UserNick}`);
     }
 
+    const handleGoProfile = () => {
+        navigate(`/Profile?ResponseNickName=${UserNick}`);
+    }
 
     return (
         <div>
             <div className="options">
                 <div className="options_frame">
                     <button className="option-button" onClick={handleChangeUser}><img className="icon" src="signOut.png" alt="user_icon" /> Sign Out </button>
-                    <button className="option-button"><img className="icon" src="user_icon.png" alt="user_icon" /> {UserNick} Profile </button>
+                    <button className="option-button" onClick={handleGoProfile}><img className="icon" src="user_icon.png" alt="user_icon" /> {UserNick} Profile </button>
                     <button className="option-button" onClick={handleAddBalance}> {UserBalance}$ &nbsp; <img className="icon" src="money_icon.png" alt="money_icon" /></button>
                 </div>
             </div>

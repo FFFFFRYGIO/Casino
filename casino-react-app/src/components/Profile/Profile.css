@@ -1,0 +1,10 @@
+.userDataContainer{
+    position: relative;
+    width:200px;
+    height:200px;
+    border: 1px solid;
+
+    top: 100px;
+    margin-left:auto;
+    margin-right:auto;
+}
