@@ -47,13 +47,6 @@ const Roulette = () => {
                     </div>
                 </div>
             </div>
-            <div className="BetMoney">
-                <button className="BetMoneyButton"><img className="MoneyChip" src="chip50.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton"><img className="MoneyChip" src="chip100.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton"><img className="MoneyChip" src="chip500.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton"><img className="MoneyChip" src="chip1000.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton"><img className="MoneyChip" src="chip5000.png" alt="user_icon" /></button>
-            </div>
             <div>
                 <RouletteBoard>
                 </RouletteBoard>
