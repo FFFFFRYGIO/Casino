@@ -28,6 +28,7 @@ const RouletteBoard = () => {
         return (
             <button
                 className={`number_button ${coloring}`}
+                disabled={disabled}
                 onClick={() => handleNumberChoose(number)}
             >
                 {number}
@@ -43,11 +44,11 @@ const RouletteBoard = () => {
         }
 
         // Add 3 for the n%3 categories:
-        buttons.push(<button className={`number_button`}
+        buttons.push(<button className={`number_button`} disabled={disabled}
                              onClick={() => handleCategoryChoose("2to1:n%3=1")}>{"2to1"}</button>);
-        buttons.push(<button className={`number_button`}
+        buttons.push(<button className={`number_button`} disabled={disabled}
                              onClick={() => handleCategoryChoose("2to1:n%3=2")}>{"2to1"}</button>);
-        buttons.push(<button className={`number_button`}
+        buttons.push(<button className={`number_button`} disabled={disabled}
                              onClick={() => handleCategoryChoose("2to1:n%3=0")}>{"2to1"}</button>);
 
         return buttons;
@@ -71,6 +72,7 @@ const RouletteBoard = () => {
                 <button
                     className="category_button category_button_col1"
                     key={i}
+                    disabled={disabled}
                     onClick={() => handleCategoryChoose(text)}
                 >
                     <span className="category_button_text">{text}</span>
@@ -89,6 +91,7 @@ const RouletteBoard = () => {
                     <button
                         className="category_button category_button_col2 category_button_col2_red"
                         key={i}
+                        disabled={disabled}
                         onClick={() => handleCategoryChoose(text)}
                     >
                         <span className="category_button_text">{text}</span>
@@ -99,6 +102,7 @@ const RouletteBoard = () => {
                     <button
                         className="category_button category_button_col2 category_button_col2_black"
                         key={i}
+                        disabled={disabled}
                         onClick={() => handleCategoryChoose(text)}
                     >
                         <span className="category_button_text ">{text}</span>
@@ -109,6 +113,7 @@ const RouletteBoard = () => {
                     <button
                         className="category_button category_button_col2"
                         key={i}
+                        disabled={disabled}
                         onClick={() => handleCategoryChoose(text)}
                     >
                         <span className="category_button_text">{text}</span>
@@ -157,12 +162,14 @@ const RouletteBoard = () => {
                     <div className="board">
                         <button
                             className={`number_button number_button_green`}
+                            disabled={disabled}
                             onClick={() => handleNumberChoose(0)}
                         >
                             0
                         </button>
                         <button
                             className={`number_button number_button_green`}
+                            disabled={disabled}
                             onClick={() => handleNumberChoose(100)}
                         >
                             00
@@ -187,6 +194,7 @@ const RouletteBoard = () => {
                 <br />
                 <button className="parseBet" onClick={parseBet}>Submit bet</button>
             </div>
+            <button className="ResetButton" onClick={handleReset}>Reset Your Bets</button>
         </div>
     );
 };
