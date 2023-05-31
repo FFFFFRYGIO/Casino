@@ -21,8 +21,9 @@ const RouletteWheel = ({winningNumber}) => {
 
         $spin.addEventListener('click', function () {
           $mask.textContent = 'No More Bets';
-          var randomNumber = Math.floor(Math.random() * 37);
-          //var randomNumber = winningNumber;
+          console.log(winningNumber);
+          //var randomNumber = Math.floor(Math.random() * 37);
+          var randomNumber = winningNumber;
           var color = null;
           if (randomNumber === 37) {
             $inner.setAttribute('data-spinto', '00');
@@ -90,7 +91,7 @@ const RouletteWheel = ({winningNumber}) => {
             }
           }
         });
-    }, []);
+    }, [winningNumber]);
 
     return (
         <div class="main">
