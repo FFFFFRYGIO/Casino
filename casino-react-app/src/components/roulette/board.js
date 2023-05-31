@@ -203,6 +203,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
     }
 
     const handleReset = () => {
+        getChipValue(-chips[0]-chips[1]);
         setChips([0, 0]);
         setBest(['','']);
         setDisabled(true);
