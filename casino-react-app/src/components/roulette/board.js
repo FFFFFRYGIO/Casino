@@ -62,10 +62,11 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
 
         button.innerHTML = button_image;
 
-        console.log("lastNumberHandled: " + lastCategoryHandled);
+        console.log("lastCategoryHandled: " + lastCategoryHandled);
         if(lastCategoryHandled && (lastCategoryHandled !== category)) {
             let prev_button = document.getElementById(lastCategoryHandled);
-            if(prev_button.innerHTML.includes("2to1")) {
+            if(lastCategoryHandled.includes("2to1")) {
+                console.log("Changing for 2to1")
                 prev_button.innerHTML = "2to1";
             }
             else {
