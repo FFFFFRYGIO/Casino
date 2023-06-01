@@ -59,18 +59,7 @@ const Roulette = () => {
         setGameCost(0.0);
         const win = await rouletteSpinning();
         await userBets(b);
-        const howMuch = await winnerOrLoser(c);
         console.log(win);
-        console.log(howMuch);
-
-        try{
-            await axios.post("/Payment", {
-            name: "Roulette",
-            income: "" + howMuch,
-            nickName: UserNick});
-        }catch (error) {
-            console.error(error);
-        }  
     };
 
     const rouletteSpinning = async () =>{
@@ -115,6 +104,23 @@ const Roulette = () => {
         setGameCost(-value);
     };
 
+    const updateBalanceValue = async () => {
+        const howMuch = await winnerOrLoser(chips);
+        console.log(howMuch);
+        if (howMuch > 0){
+            try{
+                await axios.post("/Payment", {
+                name: "Roulette",
+                income: "" + howMuch,
+                nickName: UserNick});
+            }catch (error) {
+                console.error(error);
+            }  
+        }
+        console.log(UserBalance);
+    };
+
+
     return (
         <div className="roulette_main_div">
             <div className="topNav">
@@ -137,7 +143,8 @@ const Roulette = () => {
             </div>
             <div>
                 <RouletteWheel
-                winningNumber={winningNumber}>
+                winningNumber={winningNumber}
+                updateBalanceValue={updateBalanceValue}>
                 </RouletteWheel>
             </div>
         </div>

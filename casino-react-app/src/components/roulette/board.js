@@ -189,6 +189,8 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
             selectedCategory: selectedCategory
         };
         getValueFromBoard(bets, chips);
+        setChips([0, 0]);
+        setBest(['','']);
         handleReset();
     };
 
