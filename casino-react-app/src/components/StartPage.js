@@ -49,9 +49,9 @@ const StartPage = () => {
         <div>
             <div className="options">
                 <div className="options_frame">
-                    <button className="option-button" onClick={handleChangeUser}><img className="icon" src="signOut.png" alt="user_icon" /> Sign Out </button>
-                    <button className="option-button" onClick={handleGoProfile}><img className="icon" src="user_icon.png" alt="user_icon" /> {UserNick} Profile </button>
-                    <button className="option-button" onClick={handleAddBalance}> {UserBalance}$ &nbsp; <img className="icon" src="money_icon.png" alt="money_icon" /></button>
+                    <button className="option-button" onClick={handleChangeUser}><img className="icon" src="img/start/signOut.png" alt="user_icon" /> Sign Out </button>
+                    <button className="option-button" onClick={handleGoProfile}><img className="icon" src="img/start/user_icon.png" alt="user_icon" /> {UserNick} Profile </button>
+                    <button className="option-button" onClick={handleAddBalance}> {UserBalance}$ &nbsp; <img className="icon" src="img/general/money_icon.png" alt="money_icon" /></button>
                 </div>
             </div>
             <div className="games">
@@ -60,7 +60,7 @@ const StartPage = () => {
                         <div class="outer-border">
                              <div class="mid-border">
                                   <div class="inner-border">
-                                     <img className="icon" src="blackjack-icon.jpg" alt="blackjack_icon" />
+                                     <img className="icon" src="img/start/blackjack-icon.jpg" alt="blackjack_icon" />
                                   </div>
                               </div>
                         </div>
@@ -78,7 +78,7 @@ const StartPage = () => {
                             <div class="outer-border">
                                  <div class="mid-border">
                                       <div class="inner-border">
-                                         <img className="icon" src="roulette-icon.jpg" alt="roulette_icon" />
+                                         <img className="icon" src="img/start/roulette-icon.jpg" alt="roulette_icon" />
                                       </div>
                                   </div>
                             </div>
@@ -96,7 +96,7 @@ const StartPage = () => {
                            <div class="outer-border">
                                 <div class="mid-border">
                                      <div class="inner-border">
-                                        <img className="icon" src="slot_machine-icon.jpg" alt="slot_machine_icon" />
+                                        <img className="icon" src="img/start/slot_machine-icon.jpg" alt="slot_machine_icon" />
                                      </div>
                                  </div>
                            </div>

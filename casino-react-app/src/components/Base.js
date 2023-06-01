@@ -4,15 +4,15 @@ import './Base.css';
 const Base = ({ children }) => {
     return (
         <div className="content">
-            <div className="corner-image top-left"></div>
-            <div className="corner-image top-right"></div>
+            <img src="img/general/corner-image.png" className="corner-image top-left"></img>
+            <img src="img/general/corner-image.png" className="corner-image top-right"></img>
             {children}
             <footer>
                 <p className="casino-name">Casino Royale</p>
                 <p className="authors">Created by: Radosław Relidzyński, Mateusz Gajda, Kuba Kaczmarski</p>
             </footer>
-            <div className="corner-image bottom-left"></div>
-            <div className="corner-image bottom-right"></div>
+            <img src="img/general/corner-image.png" className="corner-image bottom-left"></img>
+            <img src="img/general/corner-image.png" className="corner-image bottom-right"></img>
         </div>
     );
 };

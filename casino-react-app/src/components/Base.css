@@ -52,7 +52,6 @@ footer .authors {
     position: absolute;
     width: 150px;
     height: 150px;
-    background-image: url("../../public/corner-image.png");
     background-repeat: no-repeat;
     background-size: contain;
     z-index: 1;

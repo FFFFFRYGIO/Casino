@@ -24,7 +24,7 @@ const HomePage = () => {
 
       <div className="content">
           <div className="logodiv">
-            <img src="logo.png" alt="logo" class="logo" />
+            <img src="img/home/logo.png" alt="logo" class="logo" />
           </div>
           <form onSubmit={handleFormSubmit}>
             <input
@@ -34,7 +34,7 @@ const HomePage = () => {
               required
             />
             <button type="submit" class="poker-chip-button">
-              <img src="arrow.png" alt="arrow" />
+              <img src="img/home/arrow.png" alt="arrow" />
             </button>
           </form>
       </div>

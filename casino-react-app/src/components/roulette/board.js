@@ -212,11 +212,11 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
     return (
         <div className="board_main">
             <div className="BetMoney">
-                <button className="BetMoneyButton" id="50" onClick={handleChip}><img className="MoneyChip" src="chip50.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="100" onClick={handleChip}><img className="MoneyChip" src="chip100.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="500" onClick={handleChip}><img className="MoneyChip" src="chip500.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="1000" onClick={handleChip}><img className="MoneyChip" src="chip1000.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="5000" onClick={handleChip}><img className="MoneyChip" src="chip5000.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="50" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip50.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="100" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip100.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="500" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip500.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="1000" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip1000.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="5000" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip5000.png" alt="user_icon" /></button>
             </div>
             <div className="board">
                 <div>

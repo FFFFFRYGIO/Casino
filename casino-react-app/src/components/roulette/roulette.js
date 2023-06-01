@@ -119,12 +119,12 @@ const Roulette = () => {
         <div className="roulette_main_div">
             <div className="topNav">
                 <div className="left">
-                    <button className="GoBackButton" onClick={handleGoBack}><img className="icon back_money_prompt" src="left-arrow.png" alt="user_icon" /></button>
+                    <button className="GoBackButton" onClick={handleGoBack}><img className="icon back_money_prompt" src="img/general/left-arrow.png" alt="user_icon" /></button>
                 </div>
                 <div className="right">
                     <div className="AccBalance">
                         <p>{UserBalance}$ &nbsp;</p>
-                        <img className="icon back_money_prompt" src="money_icon.png" alt="money_icon" />
+                        <img className="icon back_money_prompt" src="img/general/money_icon.png" alt="money_icon" />
                     </div>
                 </div>
             </div>
