@@ -37,7 +37,11 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
         console.log("lastNumberHandled: " + lastNumberHandled);
         if((lastNumberHandled || (lastNumberHandled === 0)) && (lastNumberHandled !== number)) {
             let prev_button = document.getElementById(lastNumberHandled);
-            prev_button.innerHTML = lastNumberHandled;
+            if(lastNumberHandled === 99) {
+                prev_button.innerHTML = "00";
+            } else {
+                prev_button.innerHTML = lastNumberHandled;
+            }
         }
         setLastNumberHandled(number);
     };
@@ -76,17 +80,27 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
         setLastCategoryHandled(category);
     };
 
+    const [previousChip, setPreviousChip] = useState(null);
     const [selectedChip, setSelectedChip] = useState(null);
     const handleChip = (event) => {
-        if(UserBalance - parseFloat(event.currentTarget.id) >= 0){
+        console.log("handleChip:" + event.currentTarget.id)
+        const chipId = parseInt(event.currentTarget.id);
+        if(UserBalance >= parseFloat(event.currentTarget.id)) {
             setAmount(parseFloat(event.currentTarget.id));
             setDisabled(false);
-        }else{
-            setDisabled(true);
+            setSelectedChip(chipId);
+            console.log("updated: " + selectedChip);
+            let button = document.getElementById(chipId.toString());
+            button.style.border = '3px solid gold';
+            if(previousChip) {
+                let prevButoon = document.getElementById(previousChip);
+                prevButoon.style.border = null;
+            }
+            setPreviousChip(chipId);
+        } else{
+            alert("You don't have enough money");
+            // setDisabled(true);
         }
-        console.log("previous: " + selectedChip)
-        setSelectedChip(event.currentTarget.id);
-        console.log("updated: " + selectedChip)
     }
 
     const black_numbers = [
@@ -271,8 +285,8 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                         <button
                             className={`number_button number_button_green`}
                             disabled={disabled}
-                            onClick={() => handleNumberChoose(100)}
-                            id={"100"}
+                            onClick={() => handleNumberChoose(99)}
+                            id={"99"}
                         >
                             00
                         </button>
