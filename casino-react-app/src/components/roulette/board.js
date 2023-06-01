@@ -74,7 +74,9 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                 prev_button.innerHTML = "2to1";
             }
             else {
-                prev_button.innerHTML = lastCategoryHandled;
+                prev_button.innerHTML = "<span>" + lastCategoryHandled + "</span>";
+                let span = prev_button.querySelector("span");
+                span.style.transform = "rotate(90deg)"; // Rotate the text 90 degrees
             }
         }
         setLastCategoryHandled(category);
@@ -262,11 +264,61 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
         handleReset();
     };
 
+    // const [previousChip, setPreviousChip] = useState(null);
+    // const [selectedChip, setSelectedChip] = useState(null);
+    // const handleChip = (event) => {
+    //     console.log("handleChip:" + event.currentTarget.id)
+    //     const chipId = parseInt(event.currentTarget.id);
+    //     if(UserBalance >= parseFloat(event.currentTarget.id)) {
+    //         setAmount(parseFloat(event.currentTarget.id));
+    //         setDisabled(false);
+    //         setSelectedChip(chipId);
+    //         console.log("updated: " + selectedChip);
+    //         let button = document.getElementById(chipId.toString());
+    //         button.style.border = '3px solid gold';
+    //         if(previousChip) {
+    //             let prevButoon = document.getElementById(previousChip);
+    //             prevButoon.style.border = null;
+    //         }
+    //         setPreviousChip(chipId);
+    //     } else{
+    //         alert("You don't have enough money");
+    //         // setDisabled(true);
+    //     }
+    // }
+
     const handleReset = () => {
         getChipValue(-chips[0]-chips[1]);
         setChips([0, 0]);
         setBest(['','']);
         setDisabled(true);
+        let button;
+        console.log("selectedNumber: " + selectedNumber + " type: " + typeof(selectedNumber))
+        if(selectedNumber || selectedNumber === 0) {
+            button = document.getElementById(selectedNumber);
+            if(selectedNumber === 99) {
+                button.innerHTML = "00";
+            } else {
+                button.innerHTML = selectedNumber;
+            }
+        }
+        if(selectedCategory) {
+            button = document.getElementById(selectedCategory);
+            if(selectedCategory.includes("2to1")) {
+                button.innerHTML = "2to1";
+            } else {
+                button.innerHTML = "<span>" + selectedCategory + "</span>";
+                let span = button.querySelector("span");
+                span.style.transform = "rotate(90deg)"; // Rotate the text 90 degrees
+            }
+        }
+
+        if(selectedChip) {
+            button = document.getElementById(selectedChip);
+            button.style.border = null;
+            setSelectedChip(null);
+            setPreviousChip(null);
+        }
     }
 
     return (
