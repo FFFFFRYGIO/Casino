@@ -116,18 +116,14 @@ const Roulette = () => {
     };
 
     return (
-        <div className="roulette_main_div">
+        <div>
             <div className="topNav">
-                <div className="left">
-                    <button className="GoBackButton" onClick={handleGoBack}><img className="icon back_money_prompt" src="img/general/left-arrow.png" alt="user_icon" /></button>
-                </div>
-                <div className="right">
-                    <div className="AccBalance">
-                        <p>{UserBalance}$ &nbsp;</p>
-                        <img className="icon back_money_prompt" src="img/general/money_icon.png" alt="money_icon" />
-                    </div>
+                <button className="topNav_button GoBackButton" onClick={handleGoBack}><img className="icon back_money_prompt" src="img/general/left-arrow.png" alt="user_icon" /></button>
+                <div className="topNav_button AccBalance">{UserBalance}$ &nbsp;
+                    <img className="icon back_money_prompt" src="img/general/money_icon.png" alt="money_icon" />
                 </div>
             </div>
+        <div className="roulette_main_div">
             <div>
                 <RouletteBoard
                 getValueFromBoard={getValueFromBoard}
@@ -140,6 +136,7 @@ const Roulette = () => {
                 winningNumber={winningNumber}>
                 </RouletteWheel>
             </div>
+        </div>
         </div>
     );
 };

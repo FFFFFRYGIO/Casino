@@ -12,7 +12,9 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
     const [disabled, setDisabled] = useState(true);
 
 
+    const lastNumberHandled = null;
     const handleNumberChoose = (number) => {
+        console.log("Starting " + number);
         if (number === 100) setSelectedNumber("00");
         else setSelectedNumber(number);
         bets[0] = number.toString();
@@ -24,11 +26,18 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
         setBest(bets);
         setChips(chips);
         //setDisabled(true);
+        console.log("Changing for " + number);
+
+        var button = document.getElementById(number);
+
+        var button_image = "<img src='img/roulette/chip" + selectedChip + ".png'>"
+
+        button.innerHTML = button_image;
     };
 
     const handleCategoryChoose = (category) => {
         setSelectedCategory(category);
-        bets[1] = generateNumbers(category).join('.');
+        bets[1] = generate_categories(category).join('.');
         getChipValue(amount - chips[1]);
         chips[1] = amount;
         console.log(bets);
@@ -48,7 +57,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
         31, 32, 33, 34, 35, 36
     ];
 
-    const generateNumbers = (category) => {
+    const generate_categories = (category) => {
         if (category === "1st12"){
             return all_numbers.filter(num => num <= 12);
         }else if (category === "2nd12"){
@@ -89,6 +98,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                 className={`number_button ${coloring}`}
                 disabled={disabled}
                 onClick={() => handleNumberChoose(number)}
+                id={number}
             >
                 {number}
             </button>
@@ -192,7 +202,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
         handleReset();
     };
 
-
+    let selectedChip = "";
     const handleChip = (event) => {
         if(UserBalance - parseFloat(event.currentTarget.id) >= 0){
             setAmount(parseFloat(event.currentTarget.id));
@@ -200,6 +210,9 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
         }else{
             setDisabled(true);
         }
+        console.log("previous: " + selectedChip)
+        selectedChip = event.currentTarget.id;
+        console.log("updated: " + selectedChip)
     }
 
     const handleReset = () => {
@@ -211,13 +224,6 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
 
     return (
         <div className="board_main">
-            <div className="BetMoney">
-                <button className="BetMoneyButton" id="50" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip50.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="100" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip100.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="500" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip500.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="1000" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip1000.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="5000" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip5000.png" alt="user_icon" /></button>
-            </div>
             <div className="board">
                 <div>
                     <div className="board">
@@ -246,6 +252,13 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                 <div className="board_categories_buttons">
                     {generate_categories_buttons_col2()}
                 </div>
+            </div>
+            <div className="BetMoney">
+                <button className="BetMoneyButton" id="50" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip50.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="100" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip100.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="500" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip500.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="1000" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip1000.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="5000" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip5000.png" alt="user_icon" /></button>
             </div>
             <div className="chosen_info">
                 <br />

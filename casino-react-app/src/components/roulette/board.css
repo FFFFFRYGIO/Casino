@@ -94,3 +94,17 @@
 .category_button_col2_black {
     background-color: black;
 }
+
+.BetMoneyButton {
+    width: 50px;
+    height: auto;
+    padding: 0;
+    background-color: #28775B;
+    margin-top: 25px;
+}
+
+.BetMoneyButton img {
+    width: 50px;
+    height: auto;
+    padding: 0;
+}
