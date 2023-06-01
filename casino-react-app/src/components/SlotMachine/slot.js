@@ -5,107 +5,150 @@ import axios from 'axios';
 
 const SlotMachine = () => {
 
-    const slotSymbols = [
-      ['😀', '😁', '😂', '😃', '😄', '😅', '😆', '😇', '😈', '😉', '😊', '🙂'],
-      ['🍎', '🍏', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈', '🍒', '🍑'],
-      ['⭐️', '🌟', '✨', '💫', '⚡️', '☄️', '🌠', '🌌', '🌙', '🌕', '🌖', '🌗']
-    ];
+useEffect(() => {
+      const items = [
+        '💎',
+        '7️⃣',
+        '🍒',
+        '🍎',
+        '🍋',
+        '🔔',
+        '💎',
+        '7️⃣',
+        '🍒',
+        '🍎',
+        '🍋',
+        '🔔',
+      ];
+      const doors = document.querySelectorAll('.door');
 
-    const createSymbolElement = (symbol) => {
-      const div = document.createElement('div');
-      div.classList.add('symbol');
-      div.textContent = symbol;
-      return div;
-    }
+      document.querySelector('#spinner').addEventListener('click', spin);
+      document.querySelector('#reseter').addEventListener('click', init);
 
-    const [spun, setSpun] = useState(false);
-
-    const spin = () => {
-      if (spun) {
-        reset();
-      }
-      const slots = document.querySelectorAll('.slot');
-      let completedSlots = 0;
-
-      slots.forEach((slot, index) => {
-        const symbols = slot.querySelector('.symbols');
-        const symbolHeight = symbols.querySelector('.symbol')?.clientHeight;
-        const symbolCount = symbols.childElementCount;
-
-        symbols.innerHTML = '';
-
-        symbols.appendChild(createSymbolElement('❓'));
-
-        for (let i = 0; i < 3; i++) {
-          slotSymbols[index].forEach(symbol => {
-            symbols.appendChild(createSymbolElement(symbol));
-          });
-        }
-
-        const totalDistance = symbolCount * symbolHeight;
-        const randomOffset = -Math.floor(Math.random() * (symbolCount - 1) + 1) * symbolHeight;
-        symbols.style.top = `${randomOffset}px`;
-
-        symbols.addEventListener('transitionend', () => {
-          completedSlots++;
-          if (completedSlots === slots.length) {
-            logDisplayedSymbols();
+      function init(firstInit = true, groups = 1, duration = 1) {
+        for (const door of doors) {
+          if (firstInit) {
+            door.dataset.spinned = '0';
+          } else if (door.dataset.spinned === '1') {
+            return;
           }
-        }, { once: true });
-      });
 
-      setSpun(true);
-    }
+          const boxes = door.querySelector('.boxes');
+          const boxesClone = boxes.cloneNode(false);
+          const pool = ['❓'];
 
-    const reset = () => {
-      const slots = document.querySelectorAll('.slot');
+          if (!firstInit) {
+            const arr = [];
+            for (let n = 0; n < (groups > 0 ? groups : 1); n++) {
+              arr.push(...items);
+            }
+            pool.push(...shuffle(arr));
 
-      slots.forEach(slot => {
-        const symbols = slot.querySelector('.symbols');
-        symbols.style.transition = 'none';
-        symbols.style.top = '0';
-        symbols.style.transition = '';
-      });
-    }
+            boxesClone.addEventListener(
+              'transitionstart',
+              function () {
+                door.dataset.spinned = '1';
+                this.querySelectorAll('.box').forEach((box) => {
+                  box.style.filter = 'blur(1px)';
+                });
+              },
+              { once: true }
+            );
 
-    const logDisplayedSymbols = () => {
-      const slots = document.querySelectorAll('.slot');
-      const displayedSymbols = [];
+            boxesClone.addEventListener(
+              'transitionend',
+              function () {
+                this.querySelectorAll('.box').forEach((box, index) => {
+                  box.style.filter = 'blur(0)';
+                  if (index > 0) this.removeChild(box);
+                });
+              },
+              { once: true }
+            );
+          }
 
-      slots.forEach((slot, index) => {
-        const symbols = slot.querySelector('.symbols');
-        const symbolIndex = Math.floor(Math.abs(parseInt(symbols.style.top, 10)) / slot.clientHeight) % slotSymbols[index].length;
-        const displayedSymbol = slotSymbols[index][symbolIndex];
-        displayedSymbols.push(displayedSymbol);
-      });
+          for (let i = pool.length - 1; i >= 0; i--) {
+            const box = document.createElement('div');
+            box.classList.add('box');
+            box.style.width = door.clientWidth + 'px';
+            box.style.height = door.clientHeight + 'px';
+            box.textContent = pool[i];
+            boxesClone.appendChild(box);
+          }
+          boxesClone.style.transitionDuration = `${duration > 0 ? duration : 1}s`;
+          boxesClone.style.transform = `translateY(-${door.clientHeight * (pool.length - 1)}px)`;
+          door.replaceChild(boxesClone, boxes);
+        }
+      }
 
-      console.log(displayedSymbols);
-    }
+      async function spin() {
+        init(false, 1, 2);
 
-    useEffect(() => {
-      spin();
+        for (const door of doors) {
+          const boxes = door.querySelector('.boxes');
+          const duration = parseInt(boxes.style.transitionDuration);
+          boxes.style.transform = 'translateY(0)';
+          await new Promise((resolve) => setTimeout(resolve, duration * 100));
+        }
+      }
+
+      function shuffle([...arr]) {
+        let m = arr.length;
+        while (m) {
+          const i = Math.floor(Math.random() * m--);
+          [arr[m], arr[i]] = [arr[i], arr[m]];
+        }
+        return arr;
+      }
+
+      init();
     }, []);
+
 
     return (
         <div class="SlotMachine">
-          <div class="slotcontainer">
-            <div class="slot">
-              <div class="symbols" id="slot1Symbols"></div>
+            <div className="topNav">
+                          <div className="left">
+                              <button className="GoBackButton" ><img className="icon back_money_prompt" src="img/general/left-arrow.png" alt="user_icon" /></button>
+                          </div>
+                          <div className="right">
+                              <div className="AccBalance">
+                                  <p>$ &nbsp;</p>
+                                  <img className="icon back_money_prompt" src="img/general/money_icon.png" alt="money_icon" />
+                              </div>
+                          </div>
+                      </div>
+            <div class="doors">
+              <div class="door">
+                <div class="boxes">
+                  {/* <div className="box">?</div> */}
+                </div>
+              </div>
+
+              <div class="door">
+                <div class="boxes">
+                  {/* <div className="box">?</div> */}
+                </div>
+              </div>
+
+              <div class="door">
+                <div class="boxes">
+                  {/* <div className="box">?</div> */}
+                </div>
+              </div>
             </div>
 
-            <div class="slot">
-              <div class="symbols" id="slot2Symbols"></div>
+            <div class="buttons">
+              <button id="spinner">Play</button>
+              <button id="reseter">Reset</button>
             </div>
-
-            <div class="slot">
-              <div class="symbols" id="slot3Symbols"></div>
+            <div className="BetMoney">
+                <button className="BetMoneyButton" id="1" ><img className="MoneyChip" src="img/slot/chip1.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="5" ><img className="MoneyChip" src="img/slot/chip5.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="10" ><img className="MoneyChip" src="img/slot/chip10.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="20" ><img className="MoneyChip" src="img/slot/chip20.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="25" ><img className="MoneyChip" src="img/slot/chip25.png" alt="user_icon" /></button>
             </div>
-          </div>
-
-          <div class="buttons">
-            <button onClick={spin}>Spin</button>
-            <button onClick={reset}>Reset</button>
-          </div>
         </div>
     );
 };
