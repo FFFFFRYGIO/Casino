@@ -40,6 +40,11 @@
     border: 2px solid yellow;
 }
 
+.number_button img {
+    width: 50px;
+    height: auto;
+}
+
 .number_button_red {
     background-color: red;
 }
@@ -73,6 +78,11 @@
     overflow: hidden;
 }
 
+.category_button img {
+    width: 50px;
+    height: auto;
+}
+
 .category_button_text {
     transform: rotate(90deg);
     transform-origin: center;
@@ -93,4 +103,18 @@
 
 .category_button_col2_black {
     background-color: black;
+}
+
+.BetMoneyButton {
+    width: 50px;
+    height: auto;
+    padding: 0;
+    background-color: #28775B;
+    margin-top: 25px;
+}
+
+.BetMoneyButton img {
+    width: 50px;
+    height: auto;
+    padding: 0;
 }
