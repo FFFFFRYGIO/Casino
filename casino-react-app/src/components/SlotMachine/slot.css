@@ -1,53 +1,61 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 .SlotMachine {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  width: 100%;
+  height: 100%;
+  background: #1a2b45;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.slotcontainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+.doors {
+  display: flex;
 }
 
-.slot {
-    width: 100px;
-    height: 150px;
-    border: 1px solid black;
-    border-radius: 7.5px;
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
-    background: #fafafa;
-    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.4) inset;
+.door {
+  background: #fafafa;
+  width: 100px;
+  height: 110px;
+  overflow: hidden;
+  border-radius: 5px;
+  margin: 5px;
 }
 
-.slot .symbols {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: top 5s;
+.boxes {
+  /* transform: translateY(0); */
+  transition: transform 1s ease-in-out;
 }
 
-.slot .symbol {
-    width: 100px;
-    height: 150px;
-    font-size: 60px;
-    line-height: 100px;
-    display: block;
-    text-align: center;
-    padding-top: 25px;
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.buttons {
+  margin: 1rem 0 2rem 0;
 }
 
 button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    font-size: 16px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin: 0 0.2rem;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
 }
 
-.buttons{
-    display: flex;
+.info {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
