@@ -11,8 +11,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
 
     const [disabled, setDisabled] = useState(true);
 
-
-    const lastNumberHandled = null;
+    const [lastNumberHandled, setLastNumberHandled] = useState(null);
     const handleNumberChoose = (number) => {
         console.log("Starting " + number);
         if (number === 100) setSelectedNumber("00");
@@ -28,13 +27,22 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
         //setDisabled(true);
         console.log("Changing for " + number);
 
-        var button = document.getElementById(number);
+        let button = document.getElementById(number);
 
-        var button_image = "<img src='img/roulette/chip" + selectedChip + ".png'>"
+        let button_image = "<img src='img/roulette/chip" + selectedChip + ".png'>"
+        console.log(button_image);
 
         button.innerHTML = button_image;
+
+        console.log("lastNumberHandled: " + lastNumberHandled);
+        if((lastNumberHandled || (lastNumberHandled === 0)) && (lastNumberHandled !== number)) {
+            let prev_button = document.getElementById(lastNumberHandled);
+            prev_button.innerHTML = lastNumberHandled;
+        }
+        setLastNumberHandled(number);
     };
 
+    const [lastCategoryHandled, setLastCategoryHandled] = useState(null);
     const handleCategoryChoose = (category) => {
         setSelectedCategory(category);
         bets[1] = generate_categories(category).join('.');
@@ -45,7 +53,40 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
         setBest(bets);
         setChips(chips);
         //setDisabled(true);
+        console.log("Changing for: " + category);
+
+        let button = document.getElementById(category);
+
+        let button_image = "<img src='img/roulette/chip" + selectedChip + ".png'>"
+        console.log("button_image: " + button_image);
+
+        button.innerHTML = button_image;
+
+        console.log("lastNumberHandled: " + lastCategoryHandled);
+        if(lastCategoryHandled && (lastCategoryHandled !== category)) {
+            let prev_button = document.getElementById(lastCategoryHandled);
+            if(prev_button.innerHTML.includes("2to1")) {
+                prev_button.innerHTML = "2to1";
+            }
+            else {
+                prev_button.innerHTML = lastCategoryHandled;
+            }
+        }
+        setLastCategoryHandled(category);
     };
+
+    const [selectedChip, setSelectedChip] = useState(null);
+    const handleChip = (event) => {
+        if(UserBalance - parseFloat(event.currentTarget.id) >= 0){
+            setAmount(parseFloat(event.currentTarget.id));
+            setDisabled(false);
+        }else{
+            setDisabled(true);
+        }
+        console.log("previous: " + selectedChip)
+        setSelectedChip(event.currentTarget.id);
+        console.log("updated: " + selectedChip)
+    }
 
     const black_numbers = [
         2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35
@@ -114,11 +155,11 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
 
         // Add 3 for the n%3 categories:
         buttons.push(<button className={`number_button`} disabled={disabled}
-                             onClick={() => handleCategoryChoose("2to1:n%3=1")}>{"2to1"}</button>);
+                             onClick={() => handleCategoryChoose("2to1:n%3=1")} id={"2to1:n%3=1"}>{"2to1"}</button>);
         buttons.push(<button className={`number_button`} disabled={disabled}
-                             onClick={() => handleCategoryChoose("2to1:n%3=2")}>{"2to1"}</button>);
+                             onClick={() => handleCategoryChoose("2to1:n%3=2")} id={"2to1:n%3=2"}>{"2to1"}</button>);
         buttons.push(<button className={`number_button`} disabled={disabled}
-                             onClick={() => handleCategoryChoose("2to1:n%3=0")}>{"2to1"}</button>);
+                             onClick={() => handleCategoryChoose("2to1:n%3=0")} id={"2to1:n%3=0"}>{"2to1"}</button>);
 
         return buttons;
     };
@@ -143,6 +184,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                     key={i}
                     disabled={disabled}
                     onClick={() => handleCategoryChoose(text)}
+                    id={text}
                 >
                     <span className="category_button_text">{text}</span>
                 </button>
@@ -162,6 +204,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                         key={i}
                         disabled={disabled}
                         onClick={() => handleCategoryChoose(text)}
+                        id={text}
                     >
                         <span className="category_button_text">{text}</span>
                     </button>
@@ -173,6 +216,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                         key={i}
                         disabled={disabled}
                         onClick={() => handleCategoryChoose(text)}
+                        id={text}
                     >
                         <span className="category_button_text ">{text}</span>
                     </button>
@@ -184,6 +228,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                         key={i}
                         disabled={disabled}
                         onClick={() => handleCategoryChoose(text)}
+                        id={text}
                     >
                         <span className="category_button_text">{text}</span>
                     </button>
@@ -202,19 +247,6 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
         handleReset();
     };
 
-    let selectedChip = "";
-    const handleChip = (event) => {
-        if(UserBalance - parseFloat(event.currentTarget.id) >= 0){
-            setAmount(parseFloat(event.currentTarget.id));
-            setDisabled(false);
-        }else{
-            setDisabled(true);
-        }
-        console.log("previous: " + selectedChip)
-        selectedChip = event.currentTarget.id;
-        console.log("updated: " + selectedChip)
-    }
-
     const handleReset = () => {
         getChipValue(-chips[0]-chips[1]);
         setChips([0, 0]);
@@ -231,6 +263,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                             className={`number_button number_button_green`}
                             disabled={disabled}
                             onClick={() => handleNumberChoose(0)}
+                            id={"0"}
                         >
                             0
                         </button>
@@ -238,6 +271,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                             className={`number_button number_button_green`}
                             disabled={disabled}
                             onClick={() => handleNumberChoose(100)}
+                            id={"100"}
                         >
                             00
                         </button>
