@@ -94,7 +94,7 @@ const RouletteWheel = ({winningNumber, updateBalanceValue}) => {
     }, [winningNumber]);
 
     return (
-        <div class="main">
+        <div class="wheel-main">
           <button type="button" class="btn" id="spin"><span class="btn-label">Spin</span></button>
           <button type="button" class="btn btn-reset" id="reset"><span class="btn-label">New Game</span></button>
           <div class="plate" id="plate">
