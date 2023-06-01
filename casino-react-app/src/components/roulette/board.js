@@ -362,14 +362,9 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
                 <button className="BetMoneyButton" id="5000" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip5000.png" alt="user_icon" /></button>
             </div>
             <div className="chosen_info">
-                <br />
-                Chosen number: {selectedNumber}
-                <br />
-                Chosen category: {selectedCategory}
-                <br />
                 <button className="parseBet" onClick={parseBet}>Submit bet</button>
+                <button className="ResetButton" onClick={handleReset}>Reset Your Bets</button>
             </div>
-            <button className="ResetButton" onClick={handleReset}>Reset Your Bets</button>
         </div>
     );
 };
