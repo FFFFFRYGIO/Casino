@@ -4,7 +4,6 @@ import RouletteWheel from "./wheel";
 import './roulette.css';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Hammer from 'hammerjs';
 
 const Roulette = () => {
     const [UserNick, setUserNick] = useState("");
@@ -14,11 +13,10 @@ const Roulette = () => {
     const [bets, setBets] = useState(['', '']);
     const [chips, setChips] = useState([0, 0]);
     const [disabled, setDisabled] = useState(true);
+    const [downolandUserAgain, setDownolandUserAgain] = useState(false);
 
     const [winningNumber, setWinningNumber] = useState(null);
     // const [winningMoney, setWinningMoney] = useState(null);
-
-    const [gameCost, setGameCost] = useState(0.0);
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -27,18 +25,22 @@ const Roulette = () => {
     const navigate = useNavigate();
 
         useEffect(() => {
+            if(UserNick === "" || downolandUserAgain === true){
                 axios.get(`/DB/user/get/${ResponseNickName}`)
                     .then(response => {
                         const { nickName, balance } = response.data;
                         setUserNick(nickName);
                         setUserBalance(balance);
                         setLoading(false);
+                        setDownolandUserAgain(false);
                     })
                     .catch(error => {
                         console.error(error);
                         setLoading(false);
+                        setDownolandUserAgain(false);
                     });
-            }, [ResponseNickName]);
+            } 
+            }, [downolandUserAgain]);
 
     const handleGoBack = () => {
          navigate(`/StartPage?ResponseNickName=${UserNick}`);
@@ -46,40 +48,36 @@ const Roulette = () => {
 
     const getValueFromBoard = async () => {
         
-        
-        // setBets(b);
-        // setChips(c);
         console.log(bets);
         console.log(chips);
         
         try{
             await axios.post("/Payment", {
             name: "Roulette",
-            income: "" + gameCost,
-            nickName: UserNick});
+            income: "" + (-chips[0] - chips[1]),
+            nickName: ResponseNickName});
         }catch (error) {
             console.error(error);
         }
-        setGameCost(0.0);
+        console.log("pay");
         const win = await rouletteSpinning();
-        console.log(winningNumber);
-        console.log(winningNumber);
         await userBets(bets);
         console.log(win);
-
+        return [win, chips];
     };
 
 
     const rouletteSpinning = async () =>{
         try{
             const response = await axios.get("/R/Spinning");
-            setWinningNumber(response.data.winningNumber);
+            console.log("spin");
             if (response.data.winningNumber === '00'){
-                setWinningNumber(37);
+                return 37;
+            }else if (response.data.winningNumber === '0'){
+                return 0;
             }else{
-                setWinningNumber(parseFloat(response.data.winningNumber));
+                return parseInt(response.data.winningNumber, 10);
             }
-            return response.data.winningNumber;
         }catch (error) {
             console.error(error);
         }
@@ -90,9 +88,33 @@ const Roulette = () => {
             await axios.post("/R/Bets", {
             ButtonID1: "c-" + b[0],
             ButtonID2: "n-" + b[1]});
+            console.log("userBets");
         }catch (error) {
             console.error(error);
         }
+    };
+
+    const getChipValue = (value) => {
+        setUserBalance(UserBalance - value);   
+    };
+
+    const updateBalanceValue = async (c) => {
+        const howMuch = await winnerOrLoser(c);
+        console.log(howMuch);
+        if (howMuch > 0){
+            try{
+                await axios.post("/Payment", {
+                name: "Roulette",
+                income: "" + howMuch,
+                nickName: ResponseNickName});
+            }catch (error) {
+                console.error(error);
+            }  
+        }
+        setChips([0, 0]);
+        setBets(['','']);
+        setDisabled(true);
+        //handleReset();
     };
 
     const winnerOrLoser = async (c) =>{
@@ -100,42 +122,14 @@ const Roulette = () => {
             const response = await axios.post("/R/WinningMoney", {
             BetMoney1: c[0],
             BetMoney2: c[1]});
-            setUserBalance(response.data.winningMoney + UserBalance);
+            setDownolandUserAgain(true);
+            console.log("checkWinner");
             return response.data.winningMoney;
         }catch (error) {
             console.error(error);
         }
     };
 
-    const getChipValue = (value) => {
-        setUserBalance(UserBalance - value);
-        setGameCost(-value);
-    };
-
-    const updateBalanceValue = async () => {
-        const howMuch = await winnerOrLoser(chips);
-        console.log(howMuch);
-        if (howMuch > 0){
-            try{
-                await axios.post("/Payment", {
-                name: "Roulette",
-                income: "" + howMuch,
-                nickName: UserNick});
-            }catch (error) {
-                console.error(error);
-            }  
-        }
-        console.log(UserBalance);
-        setChips([0, 0]);
-        setBets(['','']);
-        setDisabled(true);
-        setWinningNumber(null);
-        //handleReset();
-    };
-
-    //---------------------------------------
-    
-    //-------------------------------------------
     return (
         <div>
             <div className="topNav">
@@ -162,7 +156,8 @@ const Roulette = () => {
                 <RouletteWheel
                 winningNumber={winningNumber}
                 updateBalanceValue={updateBalanceValue}
-                getValueFromBoard={getValueFromBoard}>
+                getValueFromBoard={getValueFromBoard}
+                UserBalance={UserBalance}>
                 </RouletteWheel>
             </div>
         </div>

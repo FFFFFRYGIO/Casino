@@ -6,10 +6,6 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setB
     const [selectedCategory, setSelectedCategory] = useState(null);
 
     const [amount, setAmount] = useState(null);
-    // const [bets, setBest] = useState(['', '']);
-    // const [chips, setChips] = useState([0, 0]);
-
-    //const [disabled, setDisabled] = useState(true);
 
     const [lastNumberHandled, setLastNumberHandled] = useState(null);
     const handleNumberChoose = (number) => {
@@ -17,11 +13,8 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setB
         if (number === 100) setSelectedNumber("00");
         else setSelectedNumber(number);
         bets[0] = number.toString();
-        // await returnChipValue(chips[0]);
         getChipValue(amount - chips[0]);
         chips[0] = amount;
-        console.log(bets);
-        console.log(chips);
         setBest(bets);
         setChips(chips);
         //setDisabled(true);
@@ -52,8 +45,6 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setB
         bets[1] = generate_categories(category).join('.');
         getChipValue(amount - chips[1]);
         chips[1] = amount;
-        console.log(bets);
-        console.log(chips);
         setBest(bets);
         setChips(chips);
         //setDisabled(true);
@@ -255,16 +246,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setB
         return buttons;
     };
 
-    const parseBet = () => {
-        const data = {
-            selectedNumber: selectedNumber,
-            selectedCategory: selectedCategory
-        };
-        getValueFromBoard();
-        // setChips([0, 0]);
-        // setBest(['','']);
-        // handleReset();
-    };
+    
 
     // const [previousChip, setPreviousChip] = useState(null);
     // const [selectedChip, setSelectedChip] = useState(null);
@@ -364,7 +346,6 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setB
                 <button className="BetMoneyButton" id="5000" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip5000.png" alt="user_icon" /></button>
             </div>
             <div className="chosen_info">
-                <button className="parseBet" onClick={parseBet}>Submit bet</button>
                 <button className="ResetButton" onClick={handleReset}>Reset Your Bets</button>
             </div>
         </div>

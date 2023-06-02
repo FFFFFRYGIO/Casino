@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Hammer from 'hammerjs';
 import './wheel.scss';
 
-const RouletteWheel = ({winningNumber, updateBalanceValue, getValueFromBoard}) => {
+const RouletteWheel = ({updateBalanceValue, getValueFromBoard, UserBalance, loading}) => {
 
     useEffect(() => {
         var $inner = document.querySelector('.inner');
@@ -12,6 +12,7 @@ const RouletteWheel = ({winningNumber, updateBalanceValue, getValueFromBoard}) =
         var $mask = document.querySelector('.mask');
         var maskDefault = 'Place Your Bets';
         var timer = 9000;
+        //console.log(UserBalance);
 
         var red = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
 
@@ -19,18 +20,21 @@ const RouletteWheel = ({winningNumber, updateBalanceValue, getValueFromBoard}) =
 
         $mask.textContent = maskDefault;
 
-        $spin.addEventListener('click', function () {
-          getValueFromBoard();
-          
+        $spin.addEventListener('click', async function () {
+          const result = await getValueFromBoard();
           $mask.textContent = 'No More Bets';
-          // console.log(winningNumber);
           //var randomNumber = Math.floor(Math.random() * 37);
-          var randomNumber = winningNumber;
+          var randomNumber = result[0];
+          console.log(randomNumber);
           var color = null;
           if (randomNumber === 37) {
             $inner.setAttribute('data-spinto', '00');
             document.querySelector('li:nth-child(38) input').checked = true;
-          } else {
+          } else if (randomNumber === 0){
+            $inner.setAttribute('data-spinto', '0');
+            document.querySelector('li:nth-child(37) input').checked = true;
+          }
+          else {
             $inner.setAttribute('data-spinto', randomNumber);
             document.querySelector('li:nth-child(' + randomNumber + ') input').checked = true;
           }
@@ -64,13 +68,14 @@ const RouletteWheel = ({winningNumber, updateBalanceValue, getValueFromBoard}) =
             if (randomNumber === 37) {
               document.querySelector('.result-number').textContent = '00';
             } else {
+              console.log(randomNumber);
               document.querySelector('.result-number').textContent = randomNumber;
             }
             document.querySelector('.result-color').textContent = color;
             document.querySelector('.result').style.backgroundColor = color;
             $data.classList.add('reveal');
             $inner.classList.add('rest');
-            updateBalanceValue();
+            updateBalanceValue(result[1]);
           }, timer);
         });
 
@@ -93,8 +98,7 @@ const RouletteWheel = ({winningNumber, updateBalanceValue, getValueFromBoard}) =
             }
           }
         });
-    }, [winningNumber]);
-
+    }, []);
     return (
         <div class="wheel-main">
           <button type="button" class="btn" id="spin"><span class="btn-label">Spin</span></button>
