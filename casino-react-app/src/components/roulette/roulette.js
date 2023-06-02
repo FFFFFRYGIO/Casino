@@ -4,6 +4,7 @@ import RouletteWheel from "./wheel";
 import './roulette.css';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Hammer from 'hammerjs';
 
 const Roulette = () => {
     const [UserNick, setUserNick] = useState("");
@@ -12,8 +13,9 @@ const Roulette = () => {
 
     const [bets, setBets] = useState(['', '']);
     const [chips, setChips] = useState([0, 0]);
+    const [disabled, setDisabled] = useState(true);
 
-    const [winningNumber, setWinningNumber] = useState(0);
+    const [winningNumber, setWinningNumber] = useState(null);
     // const [winningMoney, setWinningMoney] = useState(null);
 
     const [gameCost, setGameCost] = useState(0.0);
@@ -42,11 +44,13 @@ const Roulette = () => {
          navigate(`/StartPage?ResponseNickName=${UserNick}`);
     };
 
-    const getValueFromBoard = async (b, c) => {
-        setBets(b);
-        setChips(c);
-        console.log(b);
-        console.log(c);
+    const getValueFromBoard = async () => {
+        
+        
+        // setBets(b);
+        // setChips(c);
+        console.log(bets);
+        console.log(chips);
         
         try{
             await axios.post("/Payment", {
@@ -58,9 +62,13 @@ const Roulette = () => {
         }
         setGameCost(0.0);
         const win = await rouletteSpinning();
-        await userBets(b);
+        console.log(winningNumber);
+        console.log(winningNumber);
+        await userBets(bets);
         console.log(win);
+
     };
+
 
     const rouletteSpinning = async () =>{
         try{
@@ -118,9 +126,16 @@ const Roulette = () => {
             }  
         }
         console.log(UserBalance);
+        setChips([0, 0]);
+        setBets(['','']);
+        setDisabled(true);
+        setWinningNumber(null);
+        //handleReset();
     };
 
-
+    //---------------------------------------
+    
+    //-------------------------------------------
     return (
         <div>
             <div className="topNav">
@@ -134,13 +149,20 @@ const Roulette = () => {
                 <RouletteBoard
                 getValueFromBoard={getValueFromBoard}
                 getChipValue={getChipValue}
-                UserBalance={UserBalance}>
+                UserBalance={UserBalance}
+                bets={bets}
+                setBest={setBets}
+                chips={chips}
+                setChips={setChips}
+                disabled={disabled}
+                setDisabled={setDisabled}>
                 </RouletteBoard>
             </div>
             <div>
                 <RouletteWheel
                 winningNumber={winningNumber}
-                updateBalanceValue={updateBalanceValue}>
+                updateBalanceValue={updateBalanceValue}
+                getValueFromBoard={getValueFromBoard}>
                 </RouletteWheel>
             </div>
         </div>

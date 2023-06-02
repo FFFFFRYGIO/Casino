@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './board.css';
 
-const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
+const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setBest, chips, setChips, disabled, setDisabled}) => {
     const [selectedNumber, setSelectedNumber] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
 
     const [amount, setAmount] = useState(null);
-    const [bets, setBest] = useState(['', '']);
-    const [chips, setChips] = useState([0, 0]);
+    // const [bets, setBest] = useState(['', '']);
+    // const [chips, setChips] = useState([0, 0]);
 
-    const [disabled, setDisabled] = useState(true);
+    //const [disabled, setDisabled] = useState(true);
 
     const [lastNumberHandled, setLastNumberHandled] = useState(null);
     const handleNumberChoose = (number) => {
@@ -244,10 +244,10 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance}) => {
             selectedNumber: selectedNumber,
             selectedCategory: selectedCategory
         };
-        getValueFromBoard(bets, chips);
-        setChips([0, 0]);
-        setBest(['','']);
-        handleReset();
+        getValueFromBoard();
+        // setChips([0, 0]);
+        // setBest(['','']);
+        // handleReset();
     };
 
     const handleReset = () => {

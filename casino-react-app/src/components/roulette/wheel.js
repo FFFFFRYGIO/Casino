@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Hammer from 'hammerjs';
 import './wheel.scss';
 
-const RouletteWheel = ({winningNumber, updateBalanceValue}) => {
+const RouletteWheel = ({winningNumber, updateBalanceValue, getValueFromBoard}) => {
 
     useEffect(() => {
         var $inner = document.querySelector('.inner');
@@ -20,10 +20,12 @@ const RouletteWheel = ({winningNumber, updateBalanceValue}) => {
         $mask.textContent = maskDefault;
 
         $spin.addEventListener('click', function () {
+          getValueFromBoard();
+          
           $mask.textContent = 'No More Bets';
-          console.log(winningNumber);
-          var randomNumber = Math.floor(Math.random() * 37);
-          //var randomNumber = winningNumber;
+          // console.log(winningNumber);
+          //var randomNumber = Math.floor(Math.random() * 37);
+          var randomNumber = winningNumber;
           var color = null;
           if (randomNumber === 37) {
             $inner.setAttribute('data-spinto', '00');
