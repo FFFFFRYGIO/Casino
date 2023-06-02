@@ -86,6 +86,7 @@ const RouletteWheel = ({updateBalanceValue, getValueFromBoard, UserBalance, load
           $spin.style.display = 'block';
           $data.classList.remove('reveal');
           window.location.reload();
+          console.log("test")
         });
 
         var myElement = document.getElementById('plate');

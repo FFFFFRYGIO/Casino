@@ -127,6 +127,7 @@ const Roulette = () => {
             return response.data.winningMoney;
         }catch (error) {
             console.error(error);
+            console.log("test")
         }
     };
 

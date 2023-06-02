@@ -19,6 +19,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setB
         setChips(chips);
         //setDisabled(true);
         console.log("Changing for " + number);
+        console.log("test")
 
         let button = document.getElementById(number);
 
