@@ -108,16 +108,16 @@ useEffect(() => {
     return (
         <div class="SlotMachine">
             <div className="topNav">
-                          <div className="left">
-                              <button className="GoBackButton" ><img className="icon back_money_prompt" src="img/general/left-arrow.png" alt="user_icon" /></button>
-                          </div>
-                          <div className="right">
-                              <div className="AccBalance">
-                                  <p>$ &nbsp;</p>
-                                  <img className="icon back_money_prompt" src="img/general/money_icon.png" alt="money_icon" />
-                              </div>
-                          </div>
-                      </div>
+                <div className="left">
+                    <button className="GoBackButton" ><img className="icon back_money_prompt" src="img/general/left-arrow.png" alt="user_icon" /></button>
+                </div>
+                <div className="right">
+                    <div className="AccBalance">
+                        <p>$ &nbsp;</p>
+                        <img className="icon back_money_prompt" src="img/general/money_icon.png" alt="money_icon" />
+                    </div>
+                </div>
+            </div>
             <div class="doors">
               <div class="door">
                 <div class="boxes">
@@ -149,6 +149,22 @@ useEffect(() => {
                 <button className="BetMoneyButton" id="20" ><img className="MoneyChip" src="img/slot/chip20.png" alt="user_icon" /></button>
                 <button className="BetMoneyButton" id="25" ><img className="MoneyChip" src="img/slot/chip25.png" alt="user_icon" /></button>
             </div>
+
+            <div id="slot-body">
+                <div id="slot-trigger">
+                    <div class="arm">
+                        <div class="knob"></div>
+                    </div>
+                    <div class="arm-shadow"></div>
+                    <div class="ring1">
+                        <div class="shadow"></div>
+                    </div>
+                    <div class="ring2">
+                        <div class="shadow"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 };
