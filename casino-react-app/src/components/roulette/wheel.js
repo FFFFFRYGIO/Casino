@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Hammer from 'hammerjs';
 import './wheel.scss';
 
-const RouletteWheel = ({updateBalanceValue, getValueFromBoard, UserBalance, loading}) => {
+const RouletteWheel = ({updateBalanceValue, getValueFromBoard, setReaload}) => {
 
     useEffect(() => {
         var $inner = document.querySelector('.inner');
@@ -85,7 +86,7 @@ const RouletteWheel = ({updateBalanceValue, getValueFromBoard, UserBalance, load
           this.style.display = 'none';
           $spin.style.display = 'block';
           $data.classList.remove('reveal');
-          window.location.reload();
+          setReaload(true);
           console.log("test")
         });
 

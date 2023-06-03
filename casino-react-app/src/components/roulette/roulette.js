@@ -15,7 +15,7 @@ const Roulette = () => {
     const [disabled, setDisabled] = useState(true);
     const [downloadUserAgain, setDownloadUserAgain] = useState(false);
 
-    const [winningNumber, setWinningNumber] = useState(null);
+    const[rel, setReaload] = useState(false);
     // const [winningMoney, setWinningMoney] = useState(null);
 
     const location = useLocation();
@@ -25,12 +25,20 @@ const Roulette = () => {
     const navigate = useNavigate();
 
         useEffect(() => {
+            if(rel){
+                window.location.reload();
+            }
+        },[rel]);
+
+        useEffect(() => {
             if(UserNick === "" || downloadUserAgain === true){
                 axios.get(`/DB/user/get/${ResponseNickName}`)
                     .then(response => {
                         const { nickName, balance } = response.data;
+                        console.log("downolanded");
                         setUserNick(nickName);
                         setUserBalance(balance);
+                        console.log(balance);
                         setLoading(false);
                         setDownloadUserAgain(false);
                     })
@@ -44,6 +52,10 @@ const Roulette = () => {
 
     const handleGoBack = () => {
          navigate(`/StartPage?ResponseNickName=${UserNick}`);
+    };
+
+    const reset = () => {
+        navigate(`/Roulette?ResponseNickName=${UserNick}`);
     };
 
     const getValueFromBoard = async () => {
@@ -103,17 +115,21 @@ const Roulette = () => {
         console.log(howMuch);
         if (howMuch > 0){
             try{
-                await axios.post("/Payment", {
+                const response = await axios.post("/Payment", {
                 name: "Roulette",
                 income: "" + howMuch,
                 nickName: ResponseNickName});
+                const responseValue = response.data.value;
+                setChips([0, 0]);
+                setBets(['','']);
+                console.log(responseValue);
+                //setDisabled(true);
+                setUserBalance(responseValue);
             }catch (error) {
                 console.error(error);
-            }  
+            }
         }
-        setChips([0, 0]);
-        setBets(['','']);
-        setDisabled(true);
+
         //handleReset();
     };
 
@@ -155,10 +171,9 @@ const Roulette = () => {
             </div>
             <div>
                 <RouletteWheel
-                winningNumber={winningNumber}
                 updateBalanceValue={updateBalanceValue}
                 getValueFromBoard={getValueFromBoard}
-                UserBalance={UserBalance}>
+                setReaload={setReaload}>
                 </RouletteWheel>
             </div>
         </div>
