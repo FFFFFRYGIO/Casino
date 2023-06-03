@@ -56,8 +56,13 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
 }, []);
 
 
-      document.querySelector('#spinner').addEventListener('click', spin);
-      document.querySelector('#reseter').addEventListener('click', init);
+      const handleSpin = () => {
+              spin();
+          };
+
+      const handleInit = () => {
+                init();
+      };
 
       function init(firstInit = true, groups = 1, duration = 1) {
         for (const door of doors) {
@@ -157,10 +162,8 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
           [arr[m], arr[i]] = [arr[i], arr[m]];
         }
         return arr;
-      }
+      };
 
-      init();
-    }, []);
 
     const handleGoBack = () => {
         navigate(`/StartPage?ResponseNickName=${ResponseNickName}`);
@@ -178,11 +181,11 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
         <div class="SlotMachine">
             <div className="topNav">
                 <div className="left">
-                    <button className="GoBackButton" ><img className="icon back_money_prompt" src="img/general/left-arrow.png" alt="user_icon" /></button>
+                    <button className="GoBackButton" onClick={handleGoBack}><img className="icon back_money_prompt" src="img/general/left-arrow.png" alt="user_icon" /></button>
                 </div>
                 <div className="right">
                     <div className="AccBalance">
-                        <p>$ &nbsp;</p>
+                        <p>{UserBalance}$ &nbsp;</p>
                         <img className="icon back_money_prompt" src="img/general/money_icon.png" alt="money_icon" />
                     </div>
                 </div>
@@ -211,11 +214,11 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
               <button id="reseter" onClick={handleInit}>Reset</button>
             </div>
             <div className="BetMoney">
-                <button className="BetMoneyButton" id="1" ><img className="MoneyChip" src="img/slot/chip1.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="5" ><img className="MoneyChip" src="img/slot/chip5.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="10" ><img className="MoneyChip" src="img/slot/chip10.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="20" ><img className="MoneyChip" src="img/slot/chip20.png" alt="user_icon" /></button>
-                <button className="BetMoneyButton" id="25" ><img className="MoneyChip" src="img/slot/chip25.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="1" onClick={handleChipClick}><img className="MoneyChip" src="img/slot/chip1.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="5" onClick={handleChipClick}><img className="MoneyChip" src="img/slot/chip5.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="10" onClick={handleChipClick}><img className="MoneyChip" src="img/slot/chip10.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="20" onClick={handleChipClick}><img className="MoneyChip" src="img/slot/chip20.png" alt="user_icon" /></button>
+                <button className="BetMoneyButton" id="25" onClick={handleChipClick}><img className="MoneyChip" src="img/slot/chip25.png" alt="user_icon" /></button>
             </div>
             <div id="spinner" onClick={handleSpin}>
                 <div id="slot-body">

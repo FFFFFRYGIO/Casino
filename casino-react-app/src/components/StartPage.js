@@ -45,6 +45,10 @@ const StartPage = () => {
         navigate(`/Profile?ResponseNickName=${UserNick}`);
     }
 
+    const handleGoSlot = () => {
+        navigate(`/Slot?ResponseNickName=${UserNick}`);
+    }
+
     return (
         <div>
             <div className="options">
@@ -92,7 +96,7 @@ const StartPage = () => {
                     </div>
                 </div>
                 <div className="game">
-                    <button className="game-button">
+                    <button className="game-button" onClick={handleGoSlot}>
                            <div class="outer-border">
                                 <div class="mid-border">
                                      <div class="inner-border">
