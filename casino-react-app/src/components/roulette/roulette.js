@@ -13,7 +13,7 @@ const Roulette = () => {
     const [bets, setBets] = useState(['', '']);
     const [chips, setChips] = useState([0, 0]);
     const [disabled, setDisabled] = useState(true);
-    const [downolandUserAgain, setDownolandUserAgain] = useState(false);
+    const [downloadUserAgain, setDownloadUserAgain] = useState(false);
 
     const [winningNumber, setWinningNumber] = useState(null);
     // const [winningMoney, setWinningMoney] = useState(null);
@@ -25,22 +25,22 @@ const Roulette = () => {
     const navigate = useNavigate();
 
         useEffect(() => {
-            if(UserNick === "" || downolandUserAgain === true){
+            if(UserNick === "" || downloadUserAgain === true){
                 axios.get(`/DB/user/get/${ResponseNickName}`)
                     .then(response => {
                         const { nickName, balance } = response.data;
                         setUserNick(nickName);
                         setUserBalance(balance);
                         setLoading(false);
-                        setDownolandUserAgain(false);
+                        setDownloadUserAgain(false);
                     })
                     .catch(error => {
                         console.error(error);
                         setLoading(false);
-                        setDownolandUserAgain(false);
+                        setDownloadUserAgain(false);
                     });
             } 
-            }, [downolandUserAgain]);
+            }, [downloadUserAgain]);
 
     const handleGoBack = () => {
          navigate(`/StartPage?ResponseNickName=${UserNick}`);
@@ -122,7 +122,7 @@ const Roulette = () => {
             const response = await axios.post("/R/WinningMoney", {
             BetMoney1: c[0],
             BetMoney2: c[1]});
-            setDownolandUserAgain(true);
+            setDownloadUserAgain(true);
             console.log("checkWinner");
             return response.data.winningMoney;
         }catch (error) {

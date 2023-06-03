@@ -2,11 +2,27 @@ import React, { useState, useEffect } from 'react';
 import "./slot.css"
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useSpring, animated } from 'react-spring';
 
 const SlotMachine = () => {
 
-useEffect(() => {
-      const items = [
+const location = useLocation();
+const searchParams = new URLSearchParams(location.search);
+const ResponseNickName = searchParams.get('ResponseNickName');
+const navigate = useNavigate();
+
+const [UserNick, setUserNick] = useState("");
+const [UserBalance, setUserBalance] = useState(300.0);
+const [loading, setLoading] = useState(true);
+
+const [armProps, setArmProps] = useSpring(() => ({ top: '-25px', height: '50%', overflow: 'visible' }));
+const [knobProps, setKnobProps] = useSpring(() => ({ top: '-15px', height: '16px' }));
+const [armShadowProps, setArmShadowProps] = useSpring(() => ({ top: '13px' }));
+const [ring1ShadowProps, setRing1ShadowProps] = useSpring(() => ({ top: '0', opacity: 0 }));
+
+const [isReady, setIsReady] = useState(false);
+
+const items = [
         '💎',
         '7️⃣',
         '🍒',
@@ -20,7 +36,25 @@ useEffect(() => {
         '🍋',
         '🔔',
       ];
-      const doors = document.querySelectorAll('.door');
+const doors = document.querySelectorAll('.door');
+
+useEffect(() => {
+
+axios.get(`/DB/user/get/${ResponseNickName}`)
+         .then(response => {
+              const { nickName, balance } = response.data;
+              setUserNick(nickName);
+              setUserBalance(balance);
+              setLoading(false);
+
+         })
+         .catch(error => {
+              console.error(error);
+              setLoading(false);
+         });
+
+}, []);
+
 
       document.querySelector('#spinner').addEventListener('click', spin);
       document.querySelector('#reseter').addEventListener('click', init);
@@ -82,14 +116,38 @@ useEffect(() => {
       }
 
       async function spin() {
-        init(false, 1, 2);
+        if(isReady){
+            setArmProps({ top: '45px', height: '2%' });
+            setKnobProps({ top: '-20px', height: '20px' });
+            setArmShadowProps({ top: '40px' });
+            setRing1ShadowProps({ top: '50%', opacity: 1 });
 
-        for (const door of doors) {
-          const boxes = door.querySelector('.boxes');
-          const duration = parseInt(boxes.style.transitionDuration);
-          boxes.style.transform = 'translateY(0)';
-          await new Promise((resolve) => setTimeout(resolve, duration * 100));
+            setTimeout(() => {
+               setArmProps({ top: '-25px', height: '50%', overflow: 'visible' });
+               setKnobProps({ top: '-15px', height: '16px' });
+               setArmShadowProps({ top: '13px' });
+               setRing1ShadowProps({ top: '0', opacity: 0 });
+            }, 380);
+
+            init(false, 1, 2);
+
+            for (const door of doors) {
+               const boxes = door.querySelector('.boxes');
+               const duration = parseInt(boxes.style.transitionDuration);
+               boxes.style.transform = 'translateY(0)';
+               await new Promise((resolve) => setTimeout(resolve, duration * 100));
+            }
+
+            const result = [];
+              for (const door of doors) {
+                const box = door.querySelector('.box');
+                const content = box.textContent;
+                result.push(content);
+              }
+            console.log('Wynik kręcenia:', result);
         }
+        setIsReady(false);
+
       }
 
       function shuffle([...arr]) {
@@ -104,7 +162,18 @@ useEffect(() => {
       init();
     }, []);
 
+    const handleGoBack = () => {
+        navigate(`/StartPage?ResponseNickName=${ResponseNickName}`);
+    };
 
+    const handleChipClick = (event) => {
+        const chipId = parseInt(event.currentTarget.id);
+        if (chipId <= UserBalance){
+            console.log("cos");
+            init();
+            setIsReady(true);
+        }
+    };
     return (
         <div class="SlotMachine">
             <div className="topNav">
@@ -139,8 +208,7 @@ useEffect(() => {
             </div>
 
             <div class="buttons">
-              <button id="spinner">Play</button>
-              <button id="reseter">Reset</button>
+              <button id="reseter" onClick={handleInit}>Reset</button>
             </div>
             <div className="BetMoney">
                 <button className="BetMoneyButton" id="1" ><img className="MoneyChip" src="img/slot/chip1.png" alt="user_icon" /></button>
@@ -149,22 +217,16 @@ useEffect(() => {
                 <button className="BetMoneyButton" id="20" ><img className="MoneyChip" src="img/slot/chip20.png" alt="user_icon" /></button>
                 <button className="BetMoneyButton" id="25" ><img className="MoneyChip" src="img/slot/chip25.png" alt="user_icon" /></button>
             </div>
-
-            <div id="slot-body">
-                <div id="slot-trigger">
-                    <div class="arm">
-                        <div class="knob"></div>
-                    </div>
-                    <div class="arm-shadow"></div>
-                    <div class="ring1">
-                        <div class="shadow"></div>
-                    </div>
-                    <div class="ring2">
-                        <div class="shadow"></div>
+            <div id="spinner" onClick={handleSpin}>
+                <div id="slot-body">
+                    <div id="slot-trigger">
+                        <animated.div className="arm" style={armProps}><div className="knob" style={knobProps}></div></animated.div>
+                        <animated.div className="arm-shadow" style={armShadowProps}></animated.div>
+                        <animated.div className="ring1"><animated.div className="shadow" style={ring1ShadowProps}></animated.div></animated.div>
+                        <animated.div className="ring2"><animated.div className="shadow" ></animated.div></animated.div>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
