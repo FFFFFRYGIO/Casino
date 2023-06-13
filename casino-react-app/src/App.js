@@ -7,6 +7,7 @@ import Base from './components/Base';
 import Payment from './components/Payment/payment';
 import Profile from './components/Profile/Profile';
 import Slot from './components/SlotMachine/slot';
+import BlackJack from './components/BlackJack/BlackJack';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
                 <Route path="/Payment" element={<Payment />} />
                 <Route path="/Slot" element={<Slot />} />
                 <Route path="/Profile" element={<Profile />} />
+                <Route path="/BlackJack" element={<BlackJack />} />
             </Routes>
         </BrowserRouter>
     </Base>
