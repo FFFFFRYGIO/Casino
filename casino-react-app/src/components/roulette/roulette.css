@@ -9,3 +9,8 @@
 .roulette_main_div > * {
     width: 50%;
 }
+
+.RouletteMain {
+    padding-right: 15%;
+    padding-left: 15%;
+}

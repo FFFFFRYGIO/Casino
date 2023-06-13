@@ -24,9 +24,18 @@ body{
 }
 
 .wheel-main {
-  padding-top: 30%;
-  width: $platesize + 24;
-  margin: 0 auto;
+  flex-grow: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.filler {
+  width: 200px;
+  height: 30%;
 }
 
 .plate {

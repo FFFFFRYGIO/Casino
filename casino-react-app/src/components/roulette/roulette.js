@@ -148,7 +148,7 @@ const Roulette = () => {
     };
 
     return (
-        <div>
+        <div className="RouletteMain">
             <div className="topNav">
                 <button className="topNav_button GoBackButton" onClick={handleGoBack}><img className="icon back_money_prompt" src="img/general/left-arrow.png" alt="user_icon" /></button>
                 <div className="topNav_button AccBalance">{UserBalance}$ &nbsp;
