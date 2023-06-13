@@ -22,20 +22,7 @@ const [ring1ShadowProps, setRing1ShadowProps] = useSpring(() => ({ top: '0', opa
 
 const [isReady, setIsReady] = useState(false);
 
-const items = [
-        '💎',
-        '7️⃣',
-        '🍒',
-        '🍎',
-        '🍋',
-        '🔔',
-        '💎',
-        '7️⃣',
-        '🍒',
-        '🍎',
-        '🍋',
-        '🔔',
-      ];
+
 const doors = document.querySelectorAll('.door');
 
 useEffect(() => {
@@ -77,12 +64,13 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
           const pool = ['❓'];
 
           if (!firstInit) {
-            const arr = [];
-            for (let n = 0; n < (groups > 0 ? groups : 1); n++) {
-              arr.push(...items);
+            try{
+              const response = await axios.get('/S/SymbolsGetter');
+              pool.push(...response.data);
+            }catch(error){
+              console.error(error);
             }
-            pool.push(...shuffle(arr));
-
+            console.log(pool);
             boxesClone.addEventListener(
               'transitionstart',
               function () {

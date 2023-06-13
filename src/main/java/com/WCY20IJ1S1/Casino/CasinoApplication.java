@@ -54,7 +54,7 @@ public class CasinoApplication {
 	@GetMapping("/slot")
 	public void slot() throws URISyntaxException, IOException, InterruptedException {
 		SlotService slotService = new SlotService();
-		slotService.GameStart(15);
+		//slotService.GameStart(15);
 	}
 
 	@GetMapping("/paypal")

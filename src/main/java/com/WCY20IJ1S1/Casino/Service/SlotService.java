@@ -1,6 +1,6 @@
 package com.WCY20IJ1S1.Casino.Service;
 
-import com.WCY20IJ1S1.Casino.Model.Slots.SlotsSymbols;
+import com.WCY20IJ1S1.Casino.Model.Slots.SlotSymbols;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,16 +14,19 @@ public class SlotService {
     private List<String> DroppedSymbols;
     private double WinningMoney;
 
-    public double GameStart(double BetMoney){
+    public List<String> SymbolGetter(){
+        List<String> symbols = new ArrayList<>(SlotSymbols.SYMBOLS);
+        Collections.shuffle(symbols);
+        return symbols;
+    }
+
+    public double GameStart(double BetMoney, List<String> DroppedSymbols){
 
         WinningMoney = 0;
-        DroppedSymbols = new ArrayList<>();
-        for(int i = 0; i < 3; i++)
-        {
-            DroppedSymbols.add(SlotsSymbols.RandomSymbol().toString());
-        }
+        System.out.println(BetMoney);
+        System.out.println(DroppedSymbols);
 
-        int DiamondNum = Collections.frequency(DroppedSymbols, SlotsSymbols.DIAMOND.toString());
+        int DiamondNum = Collections.frequency(DroppedSymbols, "💎");
 
         if(DiamondNum == 3)
         {
@@ -42,11 +45,11 @@ public class SlotService {
         }
         else if(DiamondNum == 0)
         {
-            if(!DroppedSymbols.contains(SlotsSymbols.APPLE.toString()) && !DroppedSymbols.contains(SlotsSymbols.LEMON.toString()) && !DroppedSymbols.contains(SlotsSymbols.CHERRY.toString()))
-            {
-                Odds = 15;
-                WinningMoney = BetMoney + Odds * BetMoney;
-            }
+          if(!DroppedSymbols.contains("🍎") && !DroppedSymbols.contains("🍋") && !DroppedSymbols.contains("🍒"))
+          {
+              Odds = 15;
+              WinningMoney = BetMoney + Odds * BetMoney;
+          }
         }
         System.out.println(DroppedSymbols);
         System.out.println(WinningMoney);
