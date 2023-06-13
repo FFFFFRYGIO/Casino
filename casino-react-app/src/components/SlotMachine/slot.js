@@ -15,6 +15,8 @@ const [UserNick, setUserNick] = useState("");
 const [UserBalance, setUserBalance] = useState(300.0);
 const [loading, setLoading] = useState(true);
 
+const[actualBalance, setActualBalance] = useState(0);
+
 const [armProps, setArmProps] = useSpring(() => ({ top: '-25px', height: '50%', overflow: 'visible' }));
 const [knobProps, setKnobProps] = useSpring(() => ({ top: '-15px', height: '16px' }));
 const [armShadowProps, setArmShadowProps] = useSpring(() => ({ top: '13px' }));
@@ -32,6 +34,7 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
               const { nickName, balance } = response.data;
               setUserNick(nickName);
               setUserBalance(balance);
+              setActualBalance(balance);
               setLoading(false);
 
          })
@@ -48,10 +51,11 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
           };
 
       const handleInit = () => {
+                setUserBalance(actualBalance);
                 init();
       };
 
-      function init(firstInit = true, groups = 1, duration = 1) {
+      async function init(firstInit = true, groups = 1, duration = 1) {
         for (const door of doors) {
           if (firstInit) {
             door.dataset.spinned = '0';
@@ -109,50 +113,71 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
       }
 
       async function spin() {
-        if(isReady){
-            setArmProps({ top: '45px', height: '2%' });
-            setKnobProps({ top: '-20px', height: '20px' });
-            setArmShadowProps({ top: '40px' });
-            setRing1ShadowProps({ top: '50%', opacity: 1 });
+          const result = [];
+          if(isReady){
+              setArmProps({ top: '45px', height: '2%' });
+              setKnobProps({ top: '-20px', height: '20px' });
+              setArmShadowProps({ top: '40px' });
+              setRing1ShadowProps({ top: '50%', opacity: 1 });
 
-            setTimeout(() => {
-               setArmProps({ top: '-25px', height: '50%', overflow: 'visible' });
-               setKnobProps({ top: '-15px', height: '16px' });
-               setArmShadowProps({ top: '13px' });
-               setRing1ShadowProps({ top: '0', opacity: 0 });
-            }, 380);
+              setTimeout(() => {
+                 setArmProps({ top: '-25px', height: '50%', overflow: 'visible' });
+                 setKnobProps({ top: '-15px', height: '16px' });
+                 setArmShadowProps({ top: '13px' });
+                 setRing1ShadowProps({ top: '0', opacity: 0 });
+              }, 380);
 
-            init(false, 1, 2);
+              await init(false, 1, 2);
 
-            for (const door of doors) {
-               const boxes = door.querySelector('.boxes');
-               const duration = parseInt(boxes.style.transitionDuration);
-               boxes.style.transform = 'translateY(0)';
-               await new Promise((resolve) => setTimeout(resolve, duration * 100));
-            }
-
-            const result = [];
               for (const door of doors) {
-                const box = door.querySelector('.box');
-                const content = box.textContent;
-                result.push(content);
+                 const boxes = door.querySelector('.boxes');
+                 const duration = parseInt(boxes.style.transitionDuration);
+                 boxes.style.transform = 'translateY(0)';
+                 await new Promise((resolve) => setTimeout(resolve, duration * 100));
               }
-            console.log('Wynik kręcenia:', result);
-        }
-        setIsReady(false);
+
+              //const result = [];
+                for (const door of doors) {
+                  const box = door.querySelector('.box');
+                  const content = box.textContent;
+                  result.push(content);
+                }
+
+              setTimeout(async () => {
+                  console.log('Wynik kręcenia:', result);
+                  try{
+                      await updateBalanceValue(UserBalance - actualBalance);
+                      const response = await axios.post("/S/WinningSymbolsAndBets", {
+                      BetMoney: [actualBalance - UserBalance],
+                      Symbols: result});
+                      console.log("checkWinningSymbols");
+                      setUserBalance(response.data + UserBalance);
+                      setActualBalance(response.data + UserBalance);
+                      if (response.data > 0){
+                        await updateBalanceValue(response.data);
+                      }
+                  }catch (error) {
+                      console.error(error);
+                      console.log("test")
+                  }
+              }, 2000);
+          }
+          setIsReady(false);
+          return result;
 
       }
-
-      function shuffle([...arr]) {
-        let m = arr.length;
-        while (m) {
-          const i = Math.floor(Math.random() * m--);
-          [arr[m], arr[i]] = [arr[i], arr[m]];
+    const updateBalanceValue = async (howMuch) =>{
+        try{
+            const response = await axios.post("/Payment", {
+            name: "Slots",
+            income: "" + howMuch,
+            nickName: ResponseNickName});
+            const responseValue = response.data.value;
+            console.log(responseValue);
+        }catch (error) {
+            console.error(error);
         }
-        return arr;
-      };
-
-
+    }
     const handleGoBack = () => {
         navigate(`/StartPage?ResponseNickName=${ResponseNickName}`);
     };
@@ -160,7 +185,7 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
     const handleChipClick = (event) => {
         const chipId = parseInt(event.currentTarget.id);
         if (chipId <= UserBalance){
-            console.log("cos");
+            setUserBalance(actualBalance - chipId);
             init();
             setIsReady(true);
         }
