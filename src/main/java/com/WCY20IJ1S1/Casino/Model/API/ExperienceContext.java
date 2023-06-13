@@ -6,10 +6,10 @@ public class ExperienceContext {
     private String brand_name = "Casino Royal";
     private String locale = "en-US";
     private String landing_page = "LOGIN";
-    private String shipping_preference = "SET_PROVIDED_ADDRESS";
+    private String shipping_preference = "NO_SHIPPING";
     private String user_action = "PAY_NOW";
     private String return_url = "http://localhost:8080/API/check/";
-    private String cancel_url = "https://example.com/cancelUrl";
+    private String cancel_url = "http://localhost:8080/API/check/";
 
     public String getPayment_method_preference() {
         return payment_method_preference;

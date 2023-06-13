@@ -4,7 +4,6 @@ public class Transcript {
 
     private String status;
     private String intent = "CAPTURE";
-    //private List<PurchaseUnit> purchaseUnits = List.of(new PurchaseUnit());
     private PurchaseUnit[] purchase_units = {new PurchaseUnit()};
     private PaymentSource payment_source = new PaymentSource();
 

@@ -6,8 +6,6 @@ public class PurchaseUnit {
     private String reference_id = "d9f80740-38f0-11e8-b467-0ed5f89f718b";
     private Amount amount = new Amount();
 
-    private Shipping shipping = new Shipping();
-
     public String getReferenceId() {
         return reference_id;
     }
@@ -24,11 +22,4 @@ public class PurchaseUnit {
         this.amount = amount;
     }
 
-    public Shipping getShipping() {
-        return shipping;
-    }
-
-    public void setShipping(Shipping shipping) {
-        this.shipping = shipping;
-    }
 }

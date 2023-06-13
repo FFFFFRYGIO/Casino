@@ -33,7 +33,8 @@ public class APIService {
         Transcript transcript = new Transcript();
         transcript.getPurchaseUnits()[0].getAmount().setValue(String.valueOf(Amount));
         String paymentReturn = transcript.getPaymentSource().getPayPal().getExperienceContext().getReturn_url();
-        transcript.getPaymentSource().getPayPal().getExperienceContext().setReturn_url(paymentReturn + String.valueOf(nickName));
+        transcript.getPaymentSource().getPayPal().getExperienceContext().setReturn_url(paymentReturn + nickName);
+        transcript.getPaymentSource().getPayPal().getExperienceContext().setCancel_url(paymentReturn + nickName);
         String PaymentLink;
         uri = new URI("https://api-m.sandbox.paypal.com/v2/checkout/orders");
         Gson gson = new Gson();
