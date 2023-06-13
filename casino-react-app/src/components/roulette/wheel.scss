@@ -324,13 +324,11 @@ body{
   border: 1px solid darken($spinButton, 30%);
   border-top-color: lighten($spinButton, 10%);
   border-left-color: lighten($spinButton, 10%);
-  padding: 0;
-  margin: 0;
   display: inline-block;
   font-size: 15px;
   width: $platesize / 2;
-  padding: 12px;
-  margin: 12px;
+  padding: 15px;
+  margin: 40px;
   cursor: pointer;
   color: #fff;
   font-family: 'Roboto', sans-serif;
