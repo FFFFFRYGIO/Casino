@@ -48,6 +48,9 @@ const StartPage = () => {
     const handleGoSlot = () => {
         navigate(`/Slot?ResponseNickName=${UserNick}`);
     }
+     const handleGoBlackJack = () => {
+            navigate(`/BlackJack?ResponseNickName=${UserNick}`);
+        }
 
     return (
         <div>
@@ -60,7 +63,7 @@ const StartPage = () => {
             </div>
             <div className="games">
                 <div className="game">
-                     <button className="game-button">
+                     <button className="game-button" onClick={handleGoBlackJack}>
                         <div class="outer-border">
                              <div class="mid-border">
                                   <div class="inner-border">
