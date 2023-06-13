@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -20,12 +21,13 @@ public class CasinoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CasinoApplication.class, args);
 	}
-
-	@Autowired
-	RouletteService rouletteService;
 	@Autowired
 	APIService apiService;
 
+	@GetMapping("/")
+	public RedirectView redirectToHomePage() {
+		return new RedirectView("/HomePage");
+	}
 	@GetMapping("/HomePage")
 	public ModelAndView home() {
 		ModelAndView home_page = new ModelAndView("../static/index");
