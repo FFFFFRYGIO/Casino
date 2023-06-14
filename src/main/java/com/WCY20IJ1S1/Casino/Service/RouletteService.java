@@ -31,6 +31,10 @@ public class RouletteService {
 
         if(ButtonID1 != null)
         {
+            if(ButtonID1.equals("c-99"))
+            {
+                ButtonID1 = "c-00";
+            }
             String[] ButtonID1Num = ButtonID1.substring(2).split("\\.");
             UserBetNumbersCat1.addAll(Arrays.asList(ButtonID1Num));
         }
