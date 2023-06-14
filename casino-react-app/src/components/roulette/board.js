@@ -86,7 +86,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setB
             console.log("updated: " + selectedChip);
             let button = document.getElementById(chipId.toString());
             button.style.border = '3px solid gold';
-            if(previousChip) {
+            if(previousChip && previousChip !== chipId) {
                 let prevButoon = document.getElementById(previousChip);
                 prevButoon.style.border = null;
             }
