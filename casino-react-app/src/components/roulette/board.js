@@ -86,7 +86,7 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setB
             console.log("updated: " + selectedChip);
             let button = document.getElementById(chipId.toString());
             button.style.border = '3px solid gold';
-            if(previousChip) {
+            if(previousChip && previousChip !== chipId) {
                 let prevButoon = document.getElementById(previousChip);
                 prevButoon.style.border = null;
             }
@@ -108,32 +108,21 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setB
     ];
 
     const generate_categories = (category) => {
-        if (category === "1st12"){
-            return all_numbers.filter(num => num <= 12);
-        }else if (category === "2nd12"){
-            return all_numbers.filter(num => num >= 13 && num <= 24);
-        }else if(category === "3rd12"){
-            return all_numbers.filter(num => num >= 25);
-        }else if(category === "2to1:n%3=1"){
-            return all_numbers.filter(num => num % 3 === 1);
-        }else if(category === "2to1:n%3=2"){
-            return all_numbers.filter(num => num % 3 === 2);
-        }else if(category === "2to1:n%3=0"){
-            return all_numbers.filter(num => num % 3 === 0);
-        }else if(category === "1to18"){
-            return all_numbers.filter(num => num <= 18);
-        }else if(category === "19to36"){
-            return all_numbers.filter(num => num >= 19);
-        }else if(category === "even"){
-            return all_numbers.filter(num => num % 2 === 0);
-        }else if(category === "odd"){
-            return all_numbers.filter(num => num % 2 === 1);
-        }else if(category === "Red"){
-            return all_numbers.filter(num => !black_numbers.includes(num));
-        }else if(category === "Black"){
-            return black_numbers;
-        }
-
+        const categories = {
+            "1st12": all_numbers.filter(num => num <= 12),
+            "2nd12": all_numbers.filter(num => num >= 13 && num <= 24),
+            "3rd12": all_numbers.filter(num => num >= 25),
+            "2to1:n%3=1": all_numbers.filter(num => num % 3 === 1),
+            "2to1:n%3=2": all_numbers.filter(num => num % 3 === 2),
+            "2to1:n%3=0": all_numbers.filter(num => num % 3 === 0),
+            "1to18": all_numbers.filter(num => num <= 18),
+            "19to36": all_numbers.filter(num => num >= 19),
+            "even": all_numbers.filter(num => num % 2 === 0),
+            "odd": all_numbers.filter(num => num % 2 === 1),
+            "Red": all_numbers.filter(num => !black_numbers.includes(num)),
+            "Black": black_numbers
+        };
+        return categories[category] || [];
     };
 
     const generate_number_button = (number) => {

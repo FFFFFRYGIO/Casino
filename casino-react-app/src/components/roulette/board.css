@@ -14,12 +14,6 @@
     align-items: center;
 }
 
-.chosen_info {
-    font-size: 30px;
-    white-space: nowrap;
-    padding: 10px
-}
-
 .board_numbers_buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -117,8 +111,6 @@
 }
 
 .board-tools > * {
-    width: 60px;
-    height: auto;
     padding: 0;
     background-color: #28775B;
 }
@@ -130,19 +122,25 @@
 }
 
 .ResetButton {
+    width: 60px;
+    height: 60px;
     background-color: green;
     border-radius: 100%;
     color: white;
-    border: none;
+    border: 2px solid black;
     padding: 5px;
     box-shadow: 0 2px 4px darkslategray;
     cursor: pointer;
     transition: all 0.2s ease;
-    background-color: #b6884d;
 }
 
 .ResetButton:active {
-  background-color: white;
-  box-shadow: 0 0 2px darkslategray;
-  transform: translateY(2px);
+    background-color: lightgreen;
+    box-shadow: 0 0 2px darkslategray;
+    transform: translateY(2px);
+}
+
+.ResetButton img {
+    width: 100%;
+    height: auto;
 }

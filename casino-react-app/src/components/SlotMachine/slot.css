@@ -248,9 +248,13 @@ button {
     z-index: 2;
 }
 
+.BetMoney > * {
+    background: #1a2b45;
+}
+
 .BetMoneyButton {
     width: 60px;
-    height: auto;
+    height: 60px;
     padding: 0;
 }
 
@@ -258,5 +262,4 @@ button {
     width: 60px;
     height: auto;
     padding: 0;
-    background: #1a2b45;
 }
