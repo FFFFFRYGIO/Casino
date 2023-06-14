@@ -72,11 +72,11 @@ input[type="text"]:required {
    border: 15px dashed #fff;
    border-radius: 6em;
    transition: all linear 0.15s;
-   box-shadow: 0 0 20px rgba(0,0,0,0.5);
+   box-shadow: 0 20px 20px rgba(0,0,0,0.5);
    margin: 2em;
 
    &:hover {
-       box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+       box-shadow: 0 25px 16px 0 rgba(0,0,0,0.24), 0 25px 50px 0 rgba(0,0,0,0.19);
      }
 }
 
