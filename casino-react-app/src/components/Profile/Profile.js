@@ -9,6 +9,8 @@ const Profile = () =>{
     const [UserNick, setUserNick] = useState("");
     const [UserBalance, setUserBalance] = useState(0.0);
     const [loading, setLoading] = useState(true);
+    const [newNickName, setNewNickname] = useState('');
+    const [history, setHistory] = useState([]);
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -19,10 +21,12 @@ const Profile = () =>{
     useEffect(() => {
         axios.get(`/DB/user/get/${ResponseNickName}`)
             .then(response => {
-                const { nickName, balance } = response.data;
+                const { nickName, balance, history} = response.data;
                 setUserNick(nickName);
                 setUserBalance(balance);
+                setHistory(history);
                 setLoading(false);
+
             })
             .catch(error => {
                  console.error(error);
@@ -31,14 +35,47 @@ const Profile = () =>{
     }, [ResponseNickName]);
 
     const deleteUser = () =>{
-        axios.get(`/DB/user/delete/${ResponseNickName}`)
+        axios.delete(`/DB/user/delete/${ResponseNickName}`)
             .catch(error => {
                  console.error(error);
-                 setLoading(false);
             });
         navigate(`/HomePage`);
     }
 
+    const handleNewNickName = (event) => {
+        setNewNickname(event.target.value);
+        console.log(newNickName);
+        console.log(event.target.value);
+    }
+
+    const saveNewNickName = async () =>{
+        await axios.put("/DB/user/put", {
+            oldNickName: UserNick,
+            newNickName: newNickName
+        }).catch(error => {
+            console.error(error);
+        });
+        navigate(`/Profile?ResponseNickName=${newNickName}`)
+    }
+
+    const generateDivs = () => {
+        const divCount = 20;
+        const divs = [];
+        const h = [];
+        console.log(history);
+        if(history.length > 0){
+            for (let i = history.length-1; i >= 0; i--) {
+                divs.push(<div key={i} class="Payment">
+                    <div>Name: {history[i].name}</div>
+                    <div>Income: {history[i].income}</div>
+                    <div>Date: {history[i].paymentDate}</div>
+                </div>);
+                }
+        }
+            
+        return divs;
+      };
+    
 
     return(
         <div className="content profile-main">
@@ -46,11 +83,15 @@ const Profile = () =>{
                 <div className="user-data">
                     <div className='userName'>User nickName: {UserNick}</div>
                     <div className='Balance'>User balance: {UserBalance}$</div>
+                    <input type="text" name="firstname" placeholder="Put updated nickName" value={newNickName} onChange={handleNewNickName}></input>
                     <button className="delete-user-button" onClick={deleteUser}>delete user</button>
                 </div>
                 <div className="registry">REGISTRY</div>
+                <div style={{ overflow: 'auto', maxHeight: '300px' }} class="history">
+                    {generateDivs()}
+                </div>
             </div>
-            <button className="chip-button">SAVE</button>
+            <button className="chip-button" onClick={saveNewNickName}>SAVE</button>
         </div>
     );
 }

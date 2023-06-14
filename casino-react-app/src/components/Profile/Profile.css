@@ -64,3 +64,13 @@
 .registry {
     font-size: 20px;
 }
+
+.history{
+    border: 2px solid #e9af11ef;
+}
+
+.payment{
+    background-color: rgb(61, 61, 61);
+    border: 2px solid #000000;
+    border-radius: 10px;
+}
