@@ -15,17 +15,36 @@ body {
   align-items: center;
 }
 
+.slot-machine-layer {
+    position: absolute;
+    top: 20%;
+    left: calc(50% - 305px);
+    width: 610px;
+    height: 510px;
+}
+
+.slot-machine {
+    width: 100%;
+    height: auto;
+}
+
 .doors {
-  display: flex;
+    display: flex;
+    padding-top: 250px;
+    padding-left: 30px;
 }
 
 .door {
   background: #fafafa;
-  width: 100px;
-  height: 110px;
+  width: 145px;
+  height: 190px;
   overflow: hidden;
   border-radius: 5px;
-  margin: 5px;
+  margin: 9px;
+}
+
+.filler {
+    height: 50%;
 }
 
 .boxes {
@@ -62,7 +81,7 @@ button {
 
 #slot-trigger {
     cursor: pointer;
-    height: 85px;
+    height: 100px;
     right: -40px;
     top: 30px;
     position: absolute;
@@ -72,6 +91,11 @@ button {
 #slot-trigger div {
     position: absolute;
     top: 0;
+}
+
+.spinner {
+    padding-top: 230px;
+    padding-left: 340px;
 }
 
 #slot-trigger .ring1 {
@@ -222,4 +246,17 @@ button {
     position: relative;
     width: 200px;
     z-index: 2;
+}
+
+.BetMoneyButton {
+    width: 60px;
+    height: auto;
+    padding: 0;
+}
+
+.MoneyChip {
+    width: 60px;
+    height: auto;
+    padding: 0;
+    background: #1a2b45;
 }

@@ -198,26 +198,48 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
                     <img className="icon back_money_prompt" src="img/general/money_icon.png" alt="money_icon" />
                 </div>
             </div>
-            <div class="doors">
-              <div class="door">
-                <div class="boxes">
-                  {/* <div className="box">?</div> */}
+            <div className="machine">
+                <div className="slot-machine-layer">
+                    <img className="slot-machine" src="img/slot/slotMachine.png" alt="slotMachine" />
                 </div>
-              </div>
 
-              <div class="door">
-                <div class="boxes">
-                  {/* <div className="box">?</div> */}
-                </div>
-              </div>
+                <div className="slot-machine-layer">
+                    <div className="doors">
+                        <div className="door">
+                            <div className="boxes">
+                                {/* <div className="box">?</div> */}
+                            </div>
+                        </div>
 
-              <div class="door">
-                <div class="boxes">
-                  {/* <div className="box">?</div> */}
+                        <div className="door">
+                            <div className="boxes">
+                                {/* <div className="box">?</div> */}
+                            </div>
+                        </div>
+
+                        <div className="door">
+                            <div className="boxes">
+                                {/* <div className="box">?</div> */}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+
+                <div className="slot-machine-layer">
+                    <div className="spinner" id="spinner" onClick={handleSpin}>
+                        <div id="slot-body">
+                            <div id="slot-trigger">
+                                <animated.div className="arm" style={armProps}><div className="knob" style={knobProps}></div></animated.div>
+                                <animated.div className="arm-shadow" style={armShadowProps}></animated.div>
+                                <animated.div className="ring1"><animated.div className="shadow" style={ring1ShadowProps}></animated.div></animated.div>
+                                <animated.div className="ring2"><animated.div className="shadow" ></animated.div></animated.div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
+            <div className="filler"></div>
             <div class="buttons">
               <button id="reseter" onClick={handleInit}>Reset</button>
             </div>
@@ -227,16 +249,6 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
                 <button className="BetMoneyButton" id="10" onClick={handleChipClick}><img className="MoneyChip" src="img/slot/chip10.png" alt="user_icon" /></button>
                 <button className="BetMoneyButton" id="20" onClick={handleChipClick}><img className="MoneyChip" src="img/slot/chip20.png" alt="user_icon" /></button>
                 <button className="BetMoneyButton" id="25" onClick={handleChipClick}><img className="MoneyChip" src="img/slot/chip25.png" alt="user_icon" /></button>
-            </div>
-            <div id="spinner" onClick={handleSpin}>
-                <div id="slot-body">
-                    <div id="slot-trigger">
-                        <animated.div className="arm" style={armProps}><div className="knob" style={knobProps}></div></animated.div>
-                        <animated.div className="arm-shadow" style={armShadowProps}></animated.div>
-                        <animated.div className="ring1"><animated.div className="shadow" style={ring1ShadowProps}></animated.div></animated.div>
-                        <animated.div className="ring2"><animated.div className="shadow" ></animated.div></animated.div>
-                    </div>
-                </div>
             </div>
         </div>
     );
