@@ -61,7 +61,7 @@ const Payment = () => {
             </div>
             <div className="Info">
                 <div className="tag-container tag-center">
-                    <div className="tag tag2">
+                    <div className="tag2">
                         Choose how much money you would like to deposit
                         <div className="tag-tail-left"></div>
                         <div className="tag-tail-right"></div>
