@@ -17,7 +17,7 @@ body {
 
 .slot-machine-layer {
     position: absolute;
-    top: 20%;
+    top: calc(20% - 50px);
     left: calc(50% - 305px);
     width: 610px;
     height: 565px;
@@ -44,7 +44,7 @@ body {
 }
 
 .filler {
-    height: 50%;
+    height: calc(10% + 450px);
 }
 
 .boxes {
