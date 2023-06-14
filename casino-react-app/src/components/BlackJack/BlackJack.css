@@ -1,5 +1,5 @@
 .BlackJackMain {
-    padding-top: 50px;
+    padding-top: 30vh;
     height: 100%;
     width: 100%;
     background-color: #000000;
@@ -8,4 +8,9 @@
 #topNavBlackJack {
     padding-top: 50px;
     width: 100%;
+}
+
+.game-caption {
+    font-size: 40px;
+    margin-top: 0;
 }

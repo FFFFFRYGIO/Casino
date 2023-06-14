@@ -31,12 +31,12 @@ button {
 footer {
     position: absolute;
     bottom: 0;
-    left: 12%;
     justify-content: space-between;
     align-items: center;
     display: flex;
     border-top: 2px solid #fff;
-    width: 76%;
+    width: calc(100% - 300px);
+    left: 150px;
 }
 
 footer .casino-name {

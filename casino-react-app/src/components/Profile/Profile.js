@@ -41,10 +41,16 @@ const Profile = () =>{
 
 
     return(
-        <div className='userDataContainer'>
-            <div className='userName'>User nickName: {UserNick}</div>
-            <div className='Balance'>User balance: {UserBalance}</div>
-            <button onClick={deleteUser}>delete user</button>
+        <div className="content profile-main">
+            <div className='userDataContainer'>
+                <div className="user-data">
+                    <div className='userName'>User nickName: {UserNick}</div>
+                    <div className='Balance'>User balance: {UserBalance}$</div>
+                    <button className="delete-user-button" onClick={deleteUser}>delete user</button>
+                </div>
+                <div className="registry">REGISTRY</div>
+            </div>
+            <button className="chip-button">SAVE</button>
         </div>
     );
 }

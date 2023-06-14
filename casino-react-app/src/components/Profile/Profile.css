@@ -1,10 +1,66 @@
 .userDataContainer{
     position: relative;
-    width:200px;
-    height:200px;
-    border: 1px solid;
+    width: 80%;
+    height: 50%;
+    border: 5px solid;
+    margin-bottom: 5%;
+    padding: 20px;
 
-    top: 100px;
-    margin-left:auto;
-    margin-right:auto;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.userDataContainer > * {
+    width: 50%;
+}
+
+.profile-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chip-button {
+    width: 4em;
+    height: 4em;
+    font-size: 30px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    background: black;
+    border: 15px dashed #fff;
+    border-radius: 6em;
+    transition: all linear 0.15s;
+    padding: 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+
+&:hover {
+     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+ }
+}
+
+.user-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-family: "Agency FB", serif;
+}
+
+.userName {
+    font-size: 200%;
+}
+
+.Balance {
+    font-size: 200%;
+}
+
+.delete-user-button {
+
+}
+
+.registry {
+    font-size: 20px;
 }

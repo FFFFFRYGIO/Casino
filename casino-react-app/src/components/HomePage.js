@@ -22,21 +22,26 @@ const HomePage = () => {
 
   return (
 
-      <div className="content">
-          <div className="logodiv">
-            <img src="img/home/logo.png" alt="logo" class="logo" />
+      <div className="homepage-main">
+          <div className="side-image"><img src="img/home/left_wing.png" alt="arrow" /></div>
+          <div className="content content2">
+              <div className="logodiv">
+                <img src="img/home/logo.png" alt="logo" class="logo" />
+              </div>
+              <form onSubmit={handleFormSubmit}>
+                <input
+                  type="text"
+                  name="nickName"
+                  placeholder="Input Your Nick"
+                  required
+                />
+                <button type="submit" class="poker-chip-button">
+                  <img src="img/home/arrow.png" alt="arrow" />
+                </button>
+              </form>
+              <div className="filler2"></div>
           </div>
-          <form onSubmit={handleFormSubmit}>
-            <input
-              type="text"
-              name="nickName"
-              placeholder="Input Your Nick"
-              required
-            />
-            <button type="submit" class="poker-chip-button">
-              <img src="img/home/arrow.png" alt="arrow" />
-            </button>
-          </form>
+          <div className="side-image"><img src="img/home/right_wing.png" alt="arrow" /></div>
       </div>
 
   );
