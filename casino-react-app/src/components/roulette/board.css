@@ -127,23 +127,20 @@
     background-color: green;
     border-radius: 100%;
     color: white;
-    border: none;
+    border: 2px solid black;
     padding: 5px;
     box-shadow: 0 2px 4px darkslategray;
     cursor: pointer;
     transition: all 0.2s ease;
-    background-color: #b6884d;
 }
 
 .ResetButton:active {
-  background-color: white;
-  box-shadow: 0 0 2px darkslategray;
-  transform: translateY(2px);
-    border: 2px solid black;
+    background-color: lightgreen;
+    box-shadow: 0 0 2px darkslategray;
+    transform: translateY(2px);
 }
 
 .ResetButton img {
-    width: 90%;
+    width: 100%;
     height: auto;
-
 }
