@@ -1,6 +1,5 @@
 .board_main {
     flex-grow: 1;
-    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,16 +106,30 @@
     background-color: black;
 }
 
-.BetMoneyButton {
-    width: 50px;
+.board-tools {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.board-tools > * {
+    width: 60px;
     height: auto;
     padding: 0;
     background-color: #28775B;
-    margin-top: 25px;
 }
 
-.BetMoneyButton img {
-    width: 50px;
+.board-tools img {
+    width: 100%;
     height: auto;
     padding: 0;
+}
+
+.ResetButton {
+    background-color: green;
+    border-radius: 100%;
 }

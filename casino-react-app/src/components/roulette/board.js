@@ -339,15 +339,13 @@ const RouletteBoard = ({getValueFromBoard, getChipValue, UserBalance, bets, setB
                     {generate_categories_buttons_col2()}
                 </div>
             </div>
-            <div className="BetMoney">
+            <div className="board-tools">
                 <button className="BetMoneyButton" id="50" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip50.png" alt="user_icon" /></button>
                 <button className="BetMoneyButton" id="100" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip100.png" alt="user_icon" /></button>
                 <button className="BetMoneyButton" id="500" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip500.png" alt="user_icon" /></button>
                 <button className="BetMoneyButton" id="1000" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip1000.png" alt="user_icon" /></button>
                 <button className="BetMoneyButton" id="5000" onClick={handleChip}><img className="MoneyChip" src="img/roulette/chip5000.png" alt="user_icon" /></button>
-            </div>
-            <div className="chosen_info">
-                <button className="ResetButton" onClick={handleReset}>Reset Your Bets</button>
+                <button className="ResetButton" onClick={handleReset}><img src="img/roulette/reset_bet_button_image.png" alt="user_icon" /></button>
             </div>
         </div>
     );
