@@ -320,19 +320,19 @@ body{
 }
 
 .btn {
-  background: $spinButton;
+  background: #b6884d;
   border: 1px solid darken($spinButton, 30%);
-  border-top-color: lighten($spinButton, 10%);
-  border-left-color: lighten($spinButton, 10%);
+  border-top-color: #b6884d;
+  border-left-color: #b6884d;
   display: inline-block;
-  font-size: 15px;
+  font-size: 30px;
   width: $platesize / 2;
   padding: 15px;
   margin: 40px;
   cursor: pointer;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  border-radius: 3px;
+  color: black;
+  font-family: "Agency FB", serif;
+  border-radius: 30%;
 
   .btn-label {
     padding: 12px;
@@ -340,10 +340,10 @@ body{
   }
 
   &.btn-reset {
-    background: $resetButton;
+    background: #b6884d;
     border: 1px solid darken($resetButton, 30%);
-    border-top-color: lighten($resetButton, 10%);
-    border-left-color: lighten($resetButton, 10%);
+    border-top-color: #b6884d;
+    border-left-color: #b6884d;
   }
 
   &.disabled {
