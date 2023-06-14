@@ -157,7 +157,7 @@ const RouletteWheel = ({updateBalanceValue, getValueFromBoard, setReaload}) => {
               </div>
             </div>
           </div>
-          <div className={"filler"}></div>
+          <div className={"filler2"}></div>
         </div>
     );
 };
