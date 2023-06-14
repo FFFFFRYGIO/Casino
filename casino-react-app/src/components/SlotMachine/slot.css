@@ -94,7 +94,7 @@ button {
 }
 
 .spinner {
-    padding-top: 265px;
+    padding-top: 235px;
     padding-left: 400px;
 }
 
@@ -112,9 +112,9 @@ button {
     -moz-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
     -webkit-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
     box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
-    height: 100%;
+    height: 150%;
     left: 0;
-    width: 8px;
+    width: 25px;
     z-index: 2;
 }
 
@@ -151,11 +151,11 @@ button {
     -moz-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
     -webkit-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
     box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
-    height: 80%;
+    height: 125%;
     left: 8px;
     overflow: hidden;
     top: 10%;
-    width: 10px;
+    width: 50px;
     z-index: 1;
 }
 
@@ -190,10 +190,10 @@ button {
     -webkit-border-radius: 0 0 4px 4px;
     border-radius: 0 0 4px 4px;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8);
-    height: 50%;
-    left: 10px;
-    top: -25px;
-    width: 6px;
+    height: 225%;
+    left: 28px;
+    top: -200px;
+    width: 20px;
     z-index: 3;
     overflow: visible !important;
 }
@@ -208,12 +208,12 @@ button {
     background: radial-gradient(ellipse at center, #ff6363 0%,#cf0404 100%);
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-    height: 16px;
-    left: -7px;
-    top: -15px;
-    width: 20px;
+    height: 40px;
+    left: -10px;
+    top: -25px;
+    width: 40px;
     z-index: 4;
 }
 
@@ -224,10 +224,10 @@ button {
     border-radius: 10px;
     bottom: 66px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-    height: 6px;
-    left: 9px;
+    height: 17px;
+    left: 28px;
     top: auto;
-    width: 8px;
+    width: 20px;
     z-index: 2;
 }
 

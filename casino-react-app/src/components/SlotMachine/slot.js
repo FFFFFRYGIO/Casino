@@ -17,8 +17,8 @@ const [loading, setLoading] = useState(true);
 
 const[actualBalance, setActualBalance] = useState(0);
 
-const [armProps, setArmProps] = useSpring(() => ({ top: '-25px', height: '50%', overflow: 'visible' }));
-const [knobProps, setKnobProps] = useSpring(() => ({ top: '-15px', height: '16px' }));
+const [armProps, setArmProps] = useSpring(() => ({ top: '-200px', height: '225%', overflow: 'visible' }));
+const [knobProps, setKnobProps] = useSpring(() => ({ top: '-25px', height: '40px' }));
 const [armShadowProps, setArmShadowProps] = useSpring(() => ({ top: '13px' }));
 const [ring1ShadowProps, setRing1ShadowProps] = useSpring(() => ({ top: '0', opacity: 0 }));
 
@@ -121,8 +121,8 @@ axios.get(`/DB/user/get/${ResponseNickName}`)
               setRing1ShadowProps({ top: '50%', opacity: 1 });
 
               setTimeout(() => {
-                 setArmProps({ top: '-25px', height: '50%', overflow: 'visible' });
-                 setKnobProps({ top: '-15px', height: '16px' });
+                 setArmProps({ top: '-200px', height: '225%', overflow: 'visible' });
+                 setKnobProps({ top: '-25px', height: '40px' });
                  setArmShadowProps({ top: '13px' });
                  setRing1ShadowProps({ top: '0', opacity: 0 });
               }, 380);
