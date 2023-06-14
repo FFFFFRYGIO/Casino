@@ -14,12 +14,6 @@
     align-items: center;
 }
 
-.chosen_info {
-    font-size: 30px;
-    white-space: nowrap;
-    padding: 10px
-}
-
 .board_numbers_buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -117,8 +111,6 @@
 }
 
 .board-tools > * {
-    width: 60px;
-    height: auto;
     padding: 0;
     background-color: #28775B;
 }
@@ -130,6 +122,15 @@
 }
 
 .ResetButton {
+    width: 60px;
+    height: 60px;
     background-color: green;
     border-radius: 100%;
+    border: 2px solid black;
+}
+
+.ResetButton img {
+    width: 90%;
+    height: auto;
+
 }
