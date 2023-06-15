@@ -107,16 +107,12 @@ const Profile = () => {
                         </div>
                     </form>
                 </div>
-                <div style={{overflow: 'auto', maxHeight: '300px'}} class="history">
-                    REGISTRY
-                    {generateDivs()}
-                    <div>
-                        <div class="center">
-                            REGISTRY
-                        </div>
-                        <div style={{overflow: 'auto', maxHeight: '300px'}} class="history">
-                            {generateDivs()}
-                        </div>
+                <div>
+                    <div class="center">
+                        REGISTRY
+                    </div>
+                    <div style={{overflow: 'auto', maxHeight: '300px'}} class="history">
+                        {generateDivs()}
                     </div>
                 </div>
             </div>
