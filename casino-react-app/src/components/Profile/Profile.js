@@ -95,7 +95,7 @@ const Profile = () => {
                             required
                         />
                         <div className="profile-options">
-                            <button className="chip-button" onClick={deleteUser}>
+                            <button className="chip-button" onClick={handleGoBack}>
                                 <img src="img/profile/go-back-button.png" alt="go_back" className="option-icon"/>
                             </button>
                             <button className="chip-button" type="submit">
