@@ -50,15 +50,15 @@ const Profile = () =>{
             for (let i = history.length-1; i >= 0; i--) {
                 divs.push(<div key={i} class="Payment">
                     <div>Name: {history[i].name}</div>
-                    <div>Income: {history[i].income}</div>
+                    <div>Income: {history[i].income} $</div>
                     <div>Date: {history[i].paymentDate}</div>
                 </div>);
             }
         }
         return divs;
-      };
+    };
     
-      const handleFormSubmit = async (event) => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
             await axios.put("/DB/user/put", {
@@ -71,8 +71,14 @@ const Profile = () =>{
         } catch (error) {
             console.error(error);
         }
-      };
+    };
 
+    const handleGoBack = () =>{
+        navigate(`/StartPage?ResponseNickName=${ResponseNickName}`);
+    };
+
+    
+    
     return(
         <div className="content profile-main">
             <div className='userDataContainer'>
@@ -99,10 +105,22 @@ const Profile = () =>{
                     </div>
                     </form>
                 </div>
+<<<<<<< HEAD
                 <div style={{ overflow: 'auto', maxHeight: '300px' }} class="history">
                     REGISTRY
                     {generateDivs()}
+=======
+                
+                <div>
+                    <div class="center">
+                        REGISTRY
+                    </div>
+                    <div style={{ overflow: 'auto', maxHeight: '300px' }} class="history">
+                        {generateDivs()}
+                    </div>
+>>>>>>> e356eb9c2dc5f2fdc16bfc26708c8ee2961007d0
                 </div>
+                
             </div>
 
         </div>
