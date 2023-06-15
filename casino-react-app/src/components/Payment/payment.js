@@ -37,7 +37,9 @@ const Payment = () => {
         try {
             const response = await axios.post("/API", {
             nickName: ResponseNickName,
-            amount: amount});
+            amount: amount,
+            url: window.location.origin + "/API/check/"});
+            console.log(window.location.origin + "/API/check/");
             const ResponseURL = response.data.paymentUrl;
             console.log(amount);
             console.log(ResponseURL);

@@ -26,11 +26,13 @@ public class APIService {
     @Value("${env.PAYPAL_CLIENT_SECRET}")
     private String clientSecret;
 
-    public String CreateOrder(double Amount, String nickName) throws URISyntaxException, IOException, InterruptedException {
+    public String CreateOrder(double Amount, String nickName, String comeBack) throws URISyntaxException, IOException, InterruptedException {
 
         String credentials = clientId + ":" + clientSecret;
         String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes());
         Transcript transcript = new Transcript();
+        transcript.getPaymentSource().getPayPal().getExperienceContext().setReturn_url(comeBack);
+        transcript.getPaymentSource().getPayPal().getExperienceContext().setCancel_url(comeBack);
         transcript.getPurchaseUnits()[0].getAmount().setValue(String.valueOf(Amount));
         String paymentReturn = transcript.getPaymentSource().getPayPal().getExperienceContext().getReturn_url();
         transcript.getPaymentSource().getPayPal().getExperienceContext().setReturn_url(paymentReturn + nickName);

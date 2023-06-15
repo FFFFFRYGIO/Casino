@@ -8,8 +8,8 @@ public class ExperienceContext {
     private String landing_page = "LOGIN";
     private String shipping_preference = "NO_SHIPPING";
     private String user_action = "PAY_NOW";
-    private String return_url = "http://localhost:8080/API/check/";
-    private String cancel_url = "http://localhost:8080/API/check/";
+    private String return_url = "";
+    private String cancel_url = "";
 
     public String getPayment_method_preference() {
         return payment_method_preference;

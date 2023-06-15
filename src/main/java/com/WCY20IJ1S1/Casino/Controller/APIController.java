@@ -28,16 +28,16 @@ public class APIController {
     private PaymentService paymentService;
     @PostMapping()
     public ResponseEntity<String> makePayment(@RequestBody Map<String, String> payload) throws URISyntaxException, IOException, InterruptedException {
-        String paymentUrl = apiService.CreateOrder(Double.parseDouble(payload.get("amount")), payload.get("nickName"));
+        String paymentUrl = apiService.CreateOrder(Double.parseDouble(payload.get("amount")), payload.get("nickName"), payload.get("url"));
         return new ResponseEntity<>("{\"paymentUrl\" : \"" + paymentUrl + "\"}", HttpStatus.CREATED);
     }
-    @GetMapping("/{amount}")
-    public RedirectView makePayment(@PathVariable ("amount") String amount) throws URISyntaxException, IOException, InterruptedException {
-        String paymentUrl = apiService.CreateOrder(Double.parseDouble(amount), "Mateusz");
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        return new RedirectView(paymentUrl);
-    }
+//    @GetMapping("/{amount}")
+//    public RedirectView makePayment(@PathVariable ("amount") String amount) throws URISyntaxException, IOException, InterruptedException {
+//        String paymentUrl = apiService.CreateOrder(Double.parseDouble(amount), "Mateusz");
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        return new RedirectView(paymentUrl);
+//    }
 
     @GetMapping("/check/{nickName}")
     public ResponseEntity<String> controlPayment(@PathVariable ("nickName") String nickName) throws URISyntaxException, IOException, InterruptedException {
