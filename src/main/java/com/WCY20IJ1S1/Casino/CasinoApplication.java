@@ -48,19 +48,23 @@ public class CasinoApplication {
 		return new ModelAndView("../static/index");
 	}
 
-	@GetMapping("/blackjack")
-	public void blackjack() {
-
+	@GetMapping("/BlackJack")
+	public ModelAndView blackjack() {
+		return new ModelAndView("../static/index");
 	}
 
-	@GetMapping("/slot")
-	public void slot() throws URISyntaxException, IOException, InterruptedException {
-		SlotService slotService = new SlotService();
-		//slotService.GameStart(15);
+	@GetMapping("/Slot")
+	public ModelAndView slot() {
+		return new ModelAndView("../static/index");
 	}
 
 	@GetMapping("/paypal")
 	public void paypal() throws URISyntaxException, IOException, InterruptedException {
 		apiService.ConfirmOrder();
+	}
+
+	@GetMapping("/Profile")
+	public ModelAndView profile(){
+		return new ModelAndView("../static/index");
 	}
 }
