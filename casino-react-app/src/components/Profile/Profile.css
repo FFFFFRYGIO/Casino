@@ -98,7 +98,6 @@ input[type="text"]:required {
     border-radius: 25px;
     text-align: center;
 }
-<<<<<<< HEAD
 
 .user-icon {
     position: absolute;
@@ -117,11 +116,10 @@ input[type="text"]:required {
     padding-left: 5px;
     padding-top: 5px;
 }
-=======
+
 .center{
     text-align: center;
     margin-bottom: 25px;
     font-family: "Agency FB", serif;
     font-size: 30px;
 }
->>>>>>> e356eb9c2dc5f2fdc16bfc26708c8ee2961007d0
