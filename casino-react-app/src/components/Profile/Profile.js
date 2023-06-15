@@ -77,6 +77,9 @@ const Profile = () =>{
         <div className="content profile-main">
             <div className='userDataContainer'>
                 <div className="user-data">
+                    <div className="user-icon">
+                        <img src="img/profile/user-icon.png" alt="user" className="user-option-icon"/>
+                    </div>
                     <div className='userName'>User nickName: {UserNick}</div>
                     <div className='Balance'>User balance: {UserBalance}$</div>
                     <form onSubmit={handleFormSubmit}>
@@ -86,15 +89,22 @@ const Profile = () =>{
                         placeholder="Input Your New Nick"
                         required
                     />
-                    <button className="chip-button" type="submit">SAVE</button>
+                    <div className="profile-options">
+                        <button className="chip-button" type="submit">
+                            <img src="img/profile/save-button.png" alt="save" className="option-icon"/>
+                        </button>
+                        <button className="chip-button" onClick={deleteUser}>
+                            <img src="img/profile/delete-button.png" alt="delete" className="option-icon"/>
+                        </button>
+                    </div>
                     </form>
                 </div>
-                <div className="registry">REGISTRY</div>
                 <div style={{ overflow: 'auto', maxHeight: '300px' }} class="history">
+                    REGISTRY
                     {generateDivs()}
                 </div>
             </div>
-            <button className="delete-user-button" onClick={deleteUser}>delete user</button>
+
         </div>
     );
 }
