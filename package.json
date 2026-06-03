@@ -4,7 +4,7 @@
     "npm": "^11.13.0",
     "or": "^0.2.0",
     "react-hook-form": "^7.43.9",
-    "react-router-dom": "^6.30.3",
+    "react-router-dom": "^6.30.4",
     "react-script": "^2.0.5"
   }
 }
