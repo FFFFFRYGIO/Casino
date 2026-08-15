@@ -11,7 +11,7 @@
     "jquery": "^3.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.30.4",
+    "react-router-dom": "^7.0.0",
     "react-script": "^2.0.5",
     "react-scripts": "^5.0.1",
     "react-spring": "^9.7.1",
