@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./slot.css"
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from '@react-spring/web';
 
 const SlotMachine = () => {
 
