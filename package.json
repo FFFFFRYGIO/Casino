@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "i": "^0.3.7",
-    "npm": "^11.17.0",
+    "npm": "^11.19.1",
     "or": "^0.2.0",
     "react-hook-form": "^7.43.9",
     "react-router-dom": "^7.18.2",
