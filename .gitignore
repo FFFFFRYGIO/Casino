@@ -34,3 +34,6 @@ build/
 
 ### ENV files ###
 .env
+
+### Node ###
+node_modules/
