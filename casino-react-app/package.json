@@ -62,5 +62,10 @@
   },
   "devDependencies": {
     "patch-package": "^8.0.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^react-router/dom$": "<rootDir>/node_modules/react-router/dist/development/dom-export.js"
+    }
   }
 }
