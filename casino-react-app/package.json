@@ -33,7 +33,10 @@
     "proxy-addr": "^2.0.8",
     "shell-quote": "^1.11.0",
     "source-map-js": "^1.2.2",
-    "postcss-selector-parser": "^7.1.6"
+    "postcss-selector-parser": "^7.1.6",
+    "@istanbuljs/load-nyc-config": {
+      "js-yaml": "^4.1.0"
+    }
   },
   "scripts": {
     "start": "react-scripts start",
