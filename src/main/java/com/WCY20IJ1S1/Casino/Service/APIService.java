@@ -21,9 +21,9 @@ public class APIService {
     private URI uri;
 
     private String OrderID;
-    @Value("${env.PAYPAL_CLIENTID}")
+    @Value("${PAYPAL_CLIENTID}")
     private String clientId;
-    @Value("${env.PAYPAL_CLIENT_SECRET}")
+    @Value("${PAYPAL_CLIENT_SECRET}")
     private String clientSecret;
 
     public String CreateOrder(double Amount, String nickName, String comeBack) throws URISyntaxException, IOException, InterruptedException {
