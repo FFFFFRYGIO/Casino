@@ -1,0 +1,41 @@
+name: build
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:8
+        ports: ["27017:27017"]
+    env:
+      SPRING_MONGODB_URI: mongodb://localhost:27017/casino
+      PAYPAL_CLIENTID: ci-dummy
+      PAYPAL_CLIENT_SECRET: ci-dummy
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - run: chmod +x mvnw && ./mvnw -B verify
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: casino-react-app
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - run: npm ci
+      # CI=false: existing ESLint warnings would otherwise fail the CRA build
+      - run: CI=false npm run build
+      - run: CI=true npx react-scripts test --watchAll=false
